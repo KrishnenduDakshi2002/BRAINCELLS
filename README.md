@@ -13,3 +13,6 @@ Codebase for react native app, Website and Backend
 5. Lets move to your terminal
 6. enter this `git clone https://github.com/KrishnenduDakshi2002/SIH-BRAINCELLS.git`
 7. Now you have this repo in your local
+
+
+**add Domain installation guide**
