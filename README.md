@@ -111,7 +111,7 @@ It will show Auto merge conflict as Ankesh already pushed his code
 
 ### Conflict message shows up when run the above command
 
-![changes images](/assets/images/pull_conflicts.png)
+![changes images](/assets/images/pull_conflicts.jpg)
 
 **Now Arjya can see the conflicts in the README.md file by opening the README.md file in VS code**
 
@@ -120,7 +120,7 @@ It will show Auto merge conflict as Ankesh already pushed his code
 She can now see both her code and Ankesh's code
 Now it's her decision what she wants to do, see can remove Ankesh's code or keep the code untouched
 
-![changes images](/assets/images/Conflicts.png)
+![changes images](/assets/images/Conflicts.jpg)
 
 -------------------------------------------------------------------------------------------------
 
