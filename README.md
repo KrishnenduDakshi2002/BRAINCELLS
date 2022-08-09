@@ -1,7 +1,10 @@
 # SIH-BRAINCELLS
 Codebase for react native app, Website and Backend
 
-# write your domain's dependencies and installation
+## Git operations like clone, push and pull
+
+
+## write your domain's dependencies and installation
 
 
 **React Native App**
