@@ -15,4 +15,4 @@ Codebase for react native app, Website and Backend
 7. Now you have this repo in your local
 
 
-**add Domain installation guide**
+**add Domain installation guides**
