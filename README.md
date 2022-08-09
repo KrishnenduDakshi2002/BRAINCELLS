@@ -6,7 +6,8 @@ Codebase for react native app, Website and Backend
 2. [Cloning repo](#cloning-repo-to-you-local)
 3. [Pushing to remote repo](#pushing-to-this-repo)
 4. [Pull changes](#pull-changes)
-5. [Removing conflicts](#removing-conflicts)
+5. [Warning or error while pulling](#pull-changes)
+6. [Removing conflicts](#removing-conflicts)
 
 
 # write your domain's dependencies and installation
@@ -123,7 +124,16 @@ Now it's her decision what she wants to do, see can remove Ankesh's code or keep
 ![changes images](/assets/images/Conflicts.jpg)
 
 -------------------------------------------------------------------------------------------------
+## Warning and errors while pulling
 
+![Warning](https://user-images.githubusercontent.com/44277044/164540951-cadef7be-5b07-4ad8-9bba-10b817663599.PNG)
+
+you can type `git config --global pull.ff true `
+then you can pull 
+
+For more details follow[issue link](https://github.com/desktop/desktop/issues/14431#issuecomment-1106634672)
+
+-------------------------------------------------------------------------------------------------
 
 ### Removing conflicts
 
