@@ -103,7 +103,7 @@ As (HEAD-> main)
 
 ### This image shows there are changes
 As (HEAD)
-![changes images](/assets/images/changes_in_main.png)
+![changes images](/assets/images/Chages_no_changes.jpg)
 
 > `git pull origin main` --> pulling the changes made in the remote repo
 
