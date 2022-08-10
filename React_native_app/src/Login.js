@@ -1,11 +1,6 @@
 import React ,{useState,useRef,useEffect} from "react";
 
 // NAVIGATION IMPORT
-
-import {
-  CurrentRenderContext,
-  NavigationContainer,
-} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //NATIVE COMPONENTS IMPORT
@@ -25,16 +20,14 @@ import {
   TouchableOpacity,
   Animated,
   Keyboard,
+  Alert,
+  Modal,
+  Button
 } from "react-native";
 
 // ICONS IMPORT
 
-import { Ionicons, MaterialCommunityIcons,Entypo, } from "@expo/vector-icons";
-
-
-
-const Stack = createNativeStackNavigator();
-
+import { Ionicons, MaterialCommunityIcons,Entypo,AntDesign, } from "@expo/vector-icons";
 
 
 //USE KEYBOARD HEIGHT HOOK
@@ -57,19 +50,21 @@ function useKeyboardHeight() {
 
 
 
+function Login({navigation}) {
 
-function Login({ navigation }) {
+  // NAVIGATION
+  const onClickRegistration = () => {
+    navigation.navigate("Registration");
+  };
 
   // STYLES
   const { styles } = useStyle();
 
+
+  //STATES
   // PASSWORD VISIBILITY
   const [passwordVisible, setPasswordVisible] = useState(true);
 
-  // NAVIGATION
-  const onPressHandler = () => {
-    navigation.navigate("Registration");
-  };
 
   //KEYBOARD STATUS
   const [keyboardStatus, setKeyboardStatus] = useState(undefined);
@@ -77,8 +72,25 @@ function Login({ navigation }) {
   // get keyboard height
   const keyboardHeight = useKeyboardHeight();
 
+  // required validation for email and password
+  const [validate,SetValidate] = useState(true);
 
-  //KEYSTATUS FUNCTION
+
+  // check for email or phoneNumber
+  const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z]+[^a-zA-Z0-9]+[a-zA-Z]+/;
+  const phoneRegex = /[0-9]{10}/;
+
+  // Modal for alert
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // Modal for forgot password
+  const [forgotPassModal, setforgotPassModal] = useState(false);
+
+  // Phone number input from forgot password modal
+  const [resetEmailAddress, setResetEmailAddress] = useState("")
+
+
+  //KEYBOARDSTATUS FUNCTION
   useEffect(() => {
     const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
       setKeyboardStatus("Keyboard_Shown");
@@ -93,6 +105,8 @@ function Login({ navigation }) {
     };
   }, []);
 
+
+
    // ANIMATIONS
 
    const translate_value = useState(new Animated.Value(0))[0];
@@ -106,7 +120,7 @@ function Login({ navigation }) {
    const translate_animation_down = Animated.timing(translate_value,{toValue:1,delay:10,useNativeDriver: true});
 
 
-  // RUNNING KEYBOARD ANIMATIONS and RESACLING WITH TRANSLATION
+  // RUNNING KEYBOARD ANIMATIONS 
    if(keyboardStatus === 'Keyboard_Hidden'){
     translate_animation_down.start();
 
@@ -118,31 +132,168 @@ function Login({ navigation }) {
    } 
 
 
-   
-
   //  GETTING THE DATA FROM TEXT INPUT
 
    const [Data, setData] = useState({
-    email : '',
+    input:'',
     password : ''
    })
 
+   // FUNCTIONALITY FUNCTIONS
 
-   // SUBMITTING LOGIN INFORMATION
-  const submitLoginInfo = ()=>{
-    console.log(Data.email);
-    console.log(Data.password);
-  
+   // forgot password button function
+  const onClickForgotPass = ()=>{
+    console.log("forgot pass");
+    setforgotPassModal(!forgotPassModal);
   }
 
+  const sendResetPassUrl = ()=>{
+    //fetch api call 
+    if(emailRegex.test(resetEmailAddress)){
 
+      fetch('https://akshar-siksha.herokuapp.com/api/user/reset_password_url/', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: resetEmailAddress
+          })
+        })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+        });
+  
+      setforgotPassModal(!forgotPassModal);
+      
+    }else{
+      Alert.alert("Invalid input type");
+    }
+    
+
+  }
+
+  // SUBMITTING LOGIN INFORMATION TO THE SERVER THROUGH API
+
+   // submitting data function
+  const submitLoginInfo =  async()=>{
+    if(Data.input ===""|| Data.password===""){
+      SetValidate(false);
+    }else{
+
+      const Userpassword = Data.password;
+      let userDataObject = {password:Userpassword}; // object for storing email or phone number
+
+      if(emailRegex.test(Data.input)){
+        userDataObject.email = Data.input; 
+
+      }
+      else if(phoneRegex.test(Data.input)){
+        userDataObject.phoneNumber = Data.input
+      }
+      else{
+        setModalVisible(!modalVisible);
+        return;
+      }
+
+
+      /// fetch api call
+      const login_json_response = await fetch('https://akshar-siksha.herokuapp.com/api/user/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userDataObject)
+      })
+      .then((response) => response.json());
+
+      if("ErrorMessage" in login_json_response){
+        Alert.alert("Error","User doesn't exists");
+      }
+      else if("auth_token" in login_json_response)
+      {
+        // we will pass auth toke to next secreen and this passing of token will go on
+        console.log("Successful login");
+
+        // Just for demo we are passing all the values to the next screen which is our 
+        // Dashboard
+        console.log(login_json_response);
+          navigation.navigate("TestDashBoard",{
+          Name : login_json_response.Name,
+          Email : login_json_response.email,
+          PhoneNumber : login_json_response.PhoneNumber
+        });
+    
+      }
+    }
+  }
 
 
   return (
     <ImageBackground
       source={require("../assets/leaves.jpg")}
-      style={{ height: Dimensions.get("screen").height / 1 }}
+      style={{ height: Dimensions.get("screen").height / 1}}
     >
+
+    {/* Modal alert implemenation */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Invalid input</Text>
+            <Pressable
+              style={[ styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Okay</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+    {/* Modal for forgot password implemenation */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={forgotPassModal}
+      >
+        <View style={styles.forgot_centeredView}>
+
+          {/* when clicked forgot password button */}
+          <View style={styles.forgot_modalView}>
+            <TextInput onChangeText={(emailInput)=> setResetEmailAddress(emailInput)}
+                        visible={true}
+                        placeholder='Enter email address'
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        placeholderTextColor={'lightgrey'}
+                        style={styles.forgot_pass_input}/>
+            <Pressable
+              style={[ styles.forgot_buttonClose]}
+              onPress={sendResetPassUrl}
+            >
+              <Text style={styles.textStyle}>Continue</Text>
+            </Pressable>
+            <Pressable
+              style={[ styles.forgot_buttonClose,{backgroundColor:"#ad3b48"}]}
+              onPress={()=>{setforgotPassModal(!forgotPassModal)}}
+            >
+              <Text style={[styles.textStyle]}>Close</Text>
+            </Pressable>
+          </View>
+
+
+        </View>
+      </Modal>
+
+
+
       {/* Icon and back arrow  */}
       <View name={"back arrow icon text"}  style={styles.icon_text_container}>
         
@@ -175,11 +326,12 @@ function Login({ navigation }) {
             {/* Email id input  */}
             <View name={"Email contrainer"} style={styles.email_container}>
               <TextInput style={styles.email_input}
-                                value={Data.email}
-                                onChangeText={(emailAddress)=>setData({...Data,email:emailAddress})}
-                                placeholder="Enter email address"
-                                placeholderTextColor={"lightgrey"}
-                                keyboardType={'default'}/>
+                                onChangeText={(inpData)=>{setData({...Data,input: inpData})}}
+                                placeholder={(validate) ? "Enter email / Phone No. ":"required"}
+                                placeholderTextColor={(validate)? "lightgrey" : "red"}
+                                keyboardType={'default'}
+                                autoCorrect={false}
+                                autoCapitalize='none'/>
             </View>
 
             {/* Password input and icon for view password */}
@@ -188,10 +340,11 @@ function Login({ navigation }) {
             <View name={"password input"} style={styles.password_container} >
               <TextInput style={styles.password_input}
                               onChangeText={(password) => setData({...Data,password : password})}
-                              placeholder="Enter password "
-                              placeholderTextColor={"lightgrey"}
-                              secureTextEntry={passwordVisible}        
-              />
+                              placeholder={(validate) ? "Enter your password ":"required"}
+                              placeholderTextColor={(validate)? "lightgrey" : "red"}
+                              secureTextEntry={passwordVisible}
+                              autoCorrect={false}
+                              autoCapitalize='none' />
             {/* Icon  */}
               <TouchableWithoutFeedback onPress={()=>{setPasswordVisible(!passwordVisible)}}>
                 <Ionicons name={passwordVisible ? "eye":"eye-off"} size={24} color="black" />
@@ -199,7 +352,7 @@ function Login({ navigation }) {
             </View>
 
             {/* Forgot password button */}
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={onClickForgotPass}>
               <Text style={{color:"#28800b"}}>Forgot Password</Text>
             </TouchableWithoutFeedback>
 
@@ -207,15 +360,16 @@ function Login({ navigation }) {
 
         </View>
 
+
         {/* Login and register button */}
         <View name={"Login and sign up"} style={[styles.login_signup_btn_container]}>
-        <TouchableOpacity style={styles.login_btn}>
-          <Text style={styles.login_button_text} onPress={submitLoginInfo}>Login</Text>
+        <TouchableOpacity style={styles.login_btn} onPress={submitLoginInfo}>
+          <Text style={styles.login_button_text} >Login</Text>
         </TouchableOpacity>
 
         <View style={styles.register_button}>
             <Text>Not registered? </Text>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={onClickRegistration}>
                 <Text style={{color:"#28800b"}}>
                   Register Now
                 </Text>
@@ -226,8 +380,7 @@ function Login({ navigation }) {
 
       </Animated.View>
 
-
-    </ImageBackground>
+    </ImageBackground >
   );
 }
 
@@ -236,13 +389,102 @@ const useStyle = () => {
   const { height, width } = useWindowDimensions();
 
   const styles = StyleSheet.create({
+    //Modal sytles
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    modalView: {
+      width: width /1.5,
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 25,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    buttonClose: {
+      width: width/ 2.5,
+      borderRadius: 20,
+      padding:10,
+      elevation: 2,
+      backgroundColor: "red",
+      marginTop:width/20,
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center",
+      fontSize: 15,
+    },
+    modalText: {
+      marginBottom: 5,
+      textAlign: "center",
+      fontSize: width/20,
+    },
+    
+    //Forgot passoword modal
+    forgot_centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      // backgroundColor:"rgba(160, 163, 168,0.5)"
+    },
+    forgot_modalView: {
+      width: width /1.3,
+      height: height/4,
+      justifyContent:"center",
+      alignItems:"center",
+      margin: 20,
+      backgroundColor: "#06baba",
+      borderRadius: 20,
+      padding: 25,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    forgot_pass_input:{
+      // borderBottomWidth:1,
+      // borderBottomColor:"rgba(0,0,0,0.4)",
+      borderRadius:25,
+      width: width/1.5,
+      height:height/15,
+      fontSize: width/30,
+      padding:5,
+      textAlign:"center",
+      backgroundColor:"white",
+    },
+    forgot_buttonClose: {
+      width: width/ 2.5,
+      borderRadius: 20,
+      padding:10,
+      elevation: 2,
+      backgroundColor: "#20590d",
+      marginTop:width/20,
+    },
+
+
+    ///////
     icon_text_container:{
       flex:1,
     },
     arrow_container:{
       flex:1,
       justifyContent:"center",
-      paddingLeft:10
+      paddingLeft:10,
     },
     icon_container:{
       flex:1,
@@ -257,6 +499,8 @@ const useStyle = () => {
       flex:1,
       borderTopLeftRadius:50,
       borderTopRightRadius:50,
+      borderBottomLeftRadius:50,
+      borderBottomRightRadius:50,
       justifyContent:"center",
       alignItems:"center",
       backgroundColor:"white"

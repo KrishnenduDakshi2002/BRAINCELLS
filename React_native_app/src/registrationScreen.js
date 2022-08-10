@@ -49,6 +49,11 @@ export default function Registration({navigation}){
             Click me
           </Text>
         </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={onPressHandler}>
+          <Text>
+            Back button
+          </Text>
+        </TouchableWithoutFeedback>
       </View>
     )
   }
