@@ -4,9 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text ,View, StyleSheet, Pressable} from 'react-native';
 
 
-import Registration from './src/registrationScreen';
+import Registration from './src/RegistrationScreen';
 import Login from './src/Login';
 import TestDashBoard from './src/TestDashBoard';
+import OTPScreen from './src/otpScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +20,8 @@ export default function App() {
 
         <Stack.Screen name='Login' component={Login }/>
         <Stack.Screen name='TestDashBoard' component={TestDashBoard }/>
-        <Stack.Screen name='Registration' component={Registration }/>
+        <Stack.Screen name='Registration' component={Registration }/> 
+        <Stack.Screen name='OTPScreen' component={OTPScreen }/>
 
       </Stack.Navigator>
     </NavigationContainer>

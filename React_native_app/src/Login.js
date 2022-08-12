@@ -222,9 +222,9 @@ function Login({navigation}) {
         // Dashboard
         console.log(login_json_response);
           navigation.navigate("TestDashBoard",{
-          Name : login_json_response.Name,
-          Email : login_json_response.email,
-          PhoneNumber : login_json_response.PhoneNumber
+            status: login_json_response.status,
+            id : login_json_response.id,
+            auth_token : login_json_response.auth_token
         });
     
       }

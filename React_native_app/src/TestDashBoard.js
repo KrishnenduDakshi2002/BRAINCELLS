@@ -8,15 +8,14 @@ function TestDashBoard({navigation, route}) {
         navigation.goBack();
     }
 
-    const {Name,Email,PhoneNumber} = route.params;
+    const {status,auth_token} = route.params;
 
   return (
     <View style={styles.screen}>
         <View style={styles.container}>
             <Text style={styles.text}>Hi! </Text>
-            <Text numberOfLines={2} style={styles.text}>{Name}</Text>
-            <Text style={styles.text}>{Email} </Text>
-            <Text style={styles.text}>{PhoneNumber}</Text>
+            <Text numberOfLines={2} style={styles.text}>{auth_token}</Text>
+            <Text style={styles.text}>{status} </Text>
 
         </View>
         <TouchableOpacity style={styles.login_btn} onPress={backHandler}>
