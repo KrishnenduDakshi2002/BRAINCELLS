@@ -4,6 +4,7 @@ import {View,
     KeyboardAvoidingView, 
     Text, 
     Dimensions, 
+    keyboard,
     TextInput, 
     TouchableOpacity,
     TouchableWithoutFeedback,
@@ -132,7 +133,7 @@ function OTPScreen({navigation,route}) {
                     ref={box1}
                     keyboardType='numeric'
                     textAlign='center'
-                    returnKeyType='go'
+                    returnKeyType ="done"
                     maxLength={1}
                     onChangeText={(pin)=>{
                         setPins({...pins,pin1:pin});
@@ -149,6 +150,7 @@ function OTPScreen({navigation,route}) {
                     ref={box2}
                     keyboardType='numeric'
                     textAlign='center'
+                    returnKeyType ="done"
                     maxLength={1}
                     // this will control the forward movement of cursor to next box
                     onChangeText={(pin)=>{
@@ -172,6 +174,7 @@ function OTPScreen({navigation,route}) {
                     keyboardType='numeric'
                     textAlign='center'
                     maxLength={1}
+                    returnKeyType ="done"
                     onChangeText={(pin)=>{
                         setPins({...pins,pin3:pin});
                         if(pin){
@@ -194,6 +197,7 @@ function OTPScreen({navigation,route}) {
                     keyboardType='numeric'
                     textAlign='center'
                     maxLength={1}
+                    returnKeyType ="done"
                     onChangeText={(pin)=>{
                         setPins({...pins,pin4:pin});
                     }}
