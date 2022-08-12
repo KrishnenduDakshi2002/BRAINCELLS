@@ -7,24 +7,24 @@ const Schema = mongoose.Schema;
 
 const instituteSchema = new mongoose.Schema({
   institute_id: {
-    type: Schema.Type.object_id,
+    type: mongoose.ObjectId,
     ref: "user",
   },
   students: [
     {
-      type: Schema.Type.object_id,
+      type: mongoose.ObjectId,
       ref: "student",
     },
   ],
   teachers: [
     {
-      type: Schema.Type.object_id,
+      type: mongoose.ObjectId,
       ref: "teacher",
     },
   ],
   courses: [
     {
-      type: Schema.Type.object_id,
+      type: mongoose.ObjectId,
       ref: "course",
     },
   ],

@@ -6,18 +6,18 @@ const Schema = mongoose.Schema;
 
 const teacherSchema = new mongoose.Schema({
   teacher_id: {
-    type: Schema.Type.object_id,
+    type: mongoose.ObjectId,
     ref: "user",
   },
   students: [
     {
-      type: Schema.Type.object_id,
+      type: mongoose.ObjectId,
       ref: "student",
     },
   ],
   courses: [
     {
-      type: Schema.Type.object_id,
+      type: mongoose.ObjectId,
       ref: "course",
     },
   ],

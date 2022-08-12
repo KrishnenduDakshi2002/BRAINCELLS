@@ -1,15 +1,7 @@
 const mongoose = require("mongoose")
 
-const addressSchema = new mongoose.Schema({
-    street_name: String,
-    city: String,
-})
+const addressSchema = new mongoose.Schema()
 const userSchema = new mongoose.Schema({
-    object_id:{
-        type: Schema.ObjectId,
-        required: true,
-        unique: true
-    },
     Fname:{
         type: String,
         required: true,
@@ -23,14 +15,17 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     age: {
-        type: String,
+        type: Number,
         required: true,
     },
     role: {
         type: String,
         required: true,
     },
-    address: addressSchema,
+    address: {
+        street_name: String,
+        city: String,
+    },
     Institute_name: {
         type: String,
         required: true,

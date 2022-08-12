@@ -16,6 +16,7 @@ const courseSchema = new mongoose.Schema({
   },
   Date_created: {
     type: Date,
+    default: Date.now,
     required: true,
   },
   Duration: {
