@@ -56,6 +56,9 @@ function RegistrationScreen({navigation}) {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [otpChoice, setOtpChoice] = useState("");
+  const [choiceVisibility, setChoiceVisibility] = useState(false);
+
 
   const [formData, setFormData] = useState({
     firstName : "",
@@ -81,6 +84,16 @@ function RegistrationScreen({navigation}) {
 // check for email or phoneNumber
 const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z]+[^a-zA-Z0-9]+[a-zA-Z]+/;
 const phoneRegex = /[0-9]{10}/;
+
+
+  let choice = '';
+  const verification_method = (method)=>{
+    choice = method;
+  }
+
+  const onClickChoiceModal = ()=>{
+    setChoiceVisibility(!choiceVisibility);
+  }
 
   const onClickRegister = async()=>{
 
@@ -113,26 +126,55 @@ const phoneRegex = /[0-9]{10}/;
 
     // Before moving to OTP screen we need to send otp on the Phone number
 
-    const res = await fetch("https://akshar-siksha.herokuapp.com/api/user/otp/generate/", {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        phone_number : formData.phoneNumber
-      })
-    }).then((res)=>res.json())
+    if(choice === 'MOBILE'){
 
-    // Navigate to otp screen with this data
+      console.log("Running mobile verification");
+      let res = await fetch("https://akshar-siksha.herokuapp.com/api/user/otp/generate/", {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phone_number : formData.phoneNumber
+        })
+      }).then((res)=>res.json())
 
-    if(res.status === 201){
-      console.log(res);
+      // Navigate to otp screen with this data
 
-      // Passing all the registration data to next screen(OTP screen)
-      navigation.navigate("OTPScreen",formData);
-    }else{
-      Alert.alert("Invalid credentials","Please check your enterted phone number");
+      if(res.status === 201){
+        console.log(res);
+
+        // Passing all the registration data to next screen(OTP screen)
+        navigation.navigate("OTPScreen",formData);
+      }else{
+        Alert.alert("Invalid credentials","Please check your enterted phone number");
+      }
+        
+    }else if(choice === 'EMAIL'){
+      
+      console.log("Running email verification");
+      let res = await fetch("https://akshar-siksha.herokuapp.com/api/user/email/veification/", {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email : formData.email
+        })
+      }).then((res)=>res.json())
+
+
+      if(res.status === 200){
+        console.log(res);
+
+        // Passing all the registration data to next screen(OTP screen)
+        navigation.navigate("OTPScreen",formData);
+      }else{
+        Alert.alert("Invalid credentials","Please check your enterted email");
+      }
+      
     }
 
 
@@ -158,7 +200,7 @@ return (
             // onKeyboardDidShow={this._keyboardDidShowHandler}
             >
 
-                {/* Modal alert implemenation */}
+                {/* Modal all fields required alert implemenation */}
                 <Modal
                   animationType="slide"
                   transparent={true}
@@ -172,6 +214,40 @@ return (
                         onPress={() => setModalVisible(!modalVisible)}
                       >
                         <Text style={styles.textStyle}>Okay</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                </Modal>
+
+                {/* Modal for choosing OTP verification method */}
+                <Modal
+                  animationType="slide"
+                  transparent={true}
+                  visible={choiceVisibility}
+                >
+                  <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                      <Text style={styles.modalText}>Verification Method</Text>
+                      <Pressable
+                        style={[ styles.buttonClose]}
+                        onPress={() => {
+                          verification_method('EMAIL');
+                          onClickRegister();
+                          setChoiceVisibility(!choiceVisibility);
+                        }}
+                      >
+                        <Text style={styles.textStyle}>Email</Text>
+                      </Pressable>
+
+                      <Pressable
+                        style={[ styles.buttonClose]}
+                        onPress={() => {
+                          verification_method('MOBILE');
+                          onClickRegister();
+                          setChoiceVisibility(!choiceVisibility);
+                        }}
+                      >
+                        <Text style={styles.textStyle}>Phone Number</Text>
                       </Pressable>
                     </View>
                   </View>
@@ -318,7 +394,7 @@ return (
                     </View>
 
                     <View name="register button wrapper" style={styles.btnWrapper}>
-                        <TouchableOpacity style={styles.btnContainer} onPress={onClickRegister}>
+                        <TouchableOpacity style={styles.btnContainer} onPress={onClickChoiceModal}>
                             <Text style={styles.btnText}>Create Account</Text>
                         </TouchableOpacity>
 

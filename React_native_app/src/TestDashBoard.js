@@ -14,8 +14,9 @@ function TestDashBoard({navigation, route}) {
     <View style={styles.screen}>
         <View style={styles.container}>
             <Text style={styles.text}>Hi! </Text>
-            <Text numberOfLines={2} style={styles.text}>{auth_token}</Text>
-            <Text style={styles.text}>{status} </Text>
+            <Text style={styles.text}>This is a test dashboard which will be replaced by actual one</Text>
+            <Text numberOfLines={2} style={styles.text}>This is a JWT :::: {auth_token}</Text>
+            <Text style={styles.text}>This is the status of response :: {status} </Text>
 
         </View>
         <TouchableOpacity style={styles.login_btn} onPress={backHandler}>
