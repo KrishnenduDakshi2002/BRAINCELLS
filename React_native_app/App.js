@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text ,View, StyleSheet, Pressable} from 'react-native';
 
 
-import Registration from './src/RegistrationScreen';
+import Registration from './src/registrationScreen';
 import Login from './src/Login';
 import TestDashBoard from './src/TestDashBoard';
 import OTPScreen from './src/otpScreen';
