@@ -1,0 +1,519 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-main-bg: #ffffff;
+  --clr-text: #000;
+  --clr-saffron: #ff9933;
+  --clr-nav-hover: #ff5d2c;
+  --clr-green: #138808;
+  --clr-underline: #83a4ff;
+  --clr-box-shadow: rgba(0, 0, 0, 0.25);
+
+  --fw-200: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --fs-nav-heading: 2rem;
+  --fs-nav-links: 1.15rem;
+  --fs-600: 1.5rem;
+  --fs-500: 1.15rem;
+  --fs-400: 1rem;
+
+  --gen-padding: 24px 40px;
+
+  --gen-transition: 0.2s ease-in-out;
+}
+
+@media (max-width: 50em) {
+  :root {
+    --fs-nav-heading: 1.75rem;
+    --fs-nav-links: 1rem;
+    --fs-600: 1.25rem;
+    --fs-500: 0.9rem;
+    --fs-400: 0.75rem;
+  }
+}
+main {
+  z-index: -1;
+}
+.hero-image {
+  z-index: -1;
+}
+
+
+
+/* landing navbar css -start */
+.nav-logo{
+  width: 60px;
+}
+
+.nav-heading{
+  display: flex;
+  align-items: center;
+}
+
+.landing-navbar-container{
+  color: white;
+}
+
+.landing-nav-top{
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--clr-saffron);
+  padding: 20px 40px;
+  z-index: 2;
+}
+
+.landing-nav-links{
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-nav-links);
+  margin-right: 40px;
+}
+
+#check{
+  display: none;
+}
+
+.landing-nav-ham-btn{
+  display: none;
+  position: fixed;
+  top: 38px;
+  right: 87px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.landing-nav-heading{
+  font-size: var(--fs-nav-heading);
+}
+
+.landing-nav-list-items{
+  padding: 10px;
+  margin-right: 5px;
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+
+.landing-nav-list-items:hover{
+  background-color: var(--clr-nav-hover);
+}
+
+.landing-nav-btn{
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid white;
+  margin-left: 10px;
+  font-size: var(--fs-nav-links);
+  color: white;
+  transition: all 0.5s;
+}
+
+.landing-nav-btn:hover{
+  background-color: white;
+  color: var(--clr-saffron);
+  font-weight: var(--fs-nav-links);
+}
+
+.landing-nav-bottom{
+  width: 100%;
+  background-color: var(--clr-saffron);
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  position: fixed;
+  transition: all 0.5s;
+  top: -100%;
+  z-index: 1;
+}
+
+.landing-nav-bottom-btn{
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid white;
+  font-size: var(--fs-nav-links);
+  color: white;
+  transition: all 0.5s;
+}
+
+.landing-nav-bottom-btn:hover{
+  background-color: white;
+  color: var(--clr-saffron);
+  font-weight: var(--fs-nav-links);
+}
+
+.landing-nav-bottom-links{
+  text-align: center;
+}
+
+.landing-nav-bottom-list-items{
+  padding: 10px;
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+
+.landing-nav-bottom-list-items:hover{
+  background-color: var(--clr-nav-hover);
+}
+
+.landing-nav-bottom-links li{
+  margin-bottom: 35px;
+}
+
+
+@media (max-width: 875px){
+  .landing-nav-links{
+      display: none;
+  }
+
+  .landing-nav-ham-btn{
+      display: flex;
+  }
+
+  #check:checked ~ div{
+      top: 72px;
+  }
+}
+
+
+
+/*icon and popup*/
+.landing-nav1-icon{
+  padding: 12px 15px;
+  border-radius: 50%;
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.landing-nav1-icon:hover{
+  color: var(--clr-saffron);
+  background-color: white;
+}
+
+/* Popup container */
+.popup {
+position: fixed;
+right: 0px;
+display: flex;
+justify-content: center;
+cursor: pointer;
+margin-right: 20px;
+z-index: 2;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+visibility: hidden;
+width: 253px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 8px 0;
+position: absolute;
+z-index: 1;
+top: 117%;
+right: 0;
+margin-right: -22px;
+z-index: 2;
+}
+
+/* Popup arrow */
+.popup .popuptext::before {
+content: "";
+position: absolute;
+bottom: 100%;
+left: 84%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent #555 transparent;
+z-index: 2;
+}
+
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s;
+animation: fadeIn 1s;
+z-index: 2;
+
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+@keyframes fadeIn {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+#myPopup{
+line-height: 30px;
+}
+
+.popup{
+float: right;
+}
+.fa-user {
+border: 2px solid white;
+border-radius: 50%;
+padding: 10px;
+color: white;
+margin-top: 21px;
+}
+
+/* landing navbar css -end */
+
+
+
+
+
+
+
+body {
+  background: rgb(255,209,160);
+  background: linear-gradient(180deg, rgba(255,209,160,1) 0%, rgba(255,255,255,1) 64%);
+}
+.landing-footer-container {
+  background-color: #138808;
+  color: white;
+}
+
+.landing-footer-img {
+  width: 100%;
+}
+
+.landing-footer-content {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.landing-footer-app-promotion {
+  width: 300px;
+  border-radius: 5px;
+}
+
+.landing-footer-social-media {
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing-footer-icon {
+  color: white;
+  padding: 10px 13px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.3s;
+}
+
+.landing-footer-twitter-icon {
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.3s;
+}
+
+.landing-footer-icon:hover {
+  background-color: #064a00;
+}
+.landing-footer-twitter-icon:hover {
+  background-color: #064a00;
+}
+
+.landing-footer-col-head {
+  margin-bottom: 10px;
+}
+
+/* .landing-footer-content-col3 h2{
+    text-align: center;
+} */
+
+.landing-footer-lists {
+  margin-bottom: 10px;
+}
+
+.landing-footer-lists:hover {
+  text-decoration: underline;
+}
+
+.landing-footer-h2-underline {
+  margin-bottom: 20px;
+  height: 1px;
+  width: 28px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.landing-footer-content-col1 {
+  padding-bottom: 30px;
+}
+.landing-footer-content-col2 {
+  padding-bottom: 30px;
+}
+.landing-footer-content-col3 {
+  padding-bottom: 30px;
+}
+.landing-footer-content-col4 {
+  padding-bottom: 30px;
+}
+
+.landing-footer-col {
+  margin-right: 20px;
+}
+
+
+/*carousel*/
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  padding-top: 110px;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+.row {
+  border-spacing: 20px;
+  margin: 50px 150px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  display: table-cell;
+  width: 300px;
+  height: 425px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  background-color: white;
+}
+.card img {
+  border-radius: 10px 10px 0 0;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card-text {
+  padding: 2px 16px;
+}

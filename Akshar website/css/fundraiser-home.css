@@ -1,0 +1,650 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-main-bg: #ffffff;
+  --clr-text: #000;
+  --clr-saffron: #ff9933;
+  --clr-nav-hover: #ff5d2c;
+  --clr-green: #138808;
+  --clr-underline: #83a4ff;
+  --clr-box-shadow: rgba(0, 0, 0, 0.25);
+
+  --fw-200: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --fs-nav-heading: 2rem;
+  --fs-nav-links: 1.15rem;
+  --fs-600: 1.5rem;
+  --fs-500: 1.15rem;
+  --fs-400: 1rem;
+
+  --gen-padding: 24px 40px;
+
+  --gen-transition: 0.2s ease-in-out;
+}
+
+@media (max-width: 50em) {
+  :root {
+    --fs-nav-heading: 1.75rem;
+    --fs-nav-links: 1rem;
+    --fs-600: 1.25rem;
+    --fs-500: 0.9rem;
+    --fs-400: 0.75rem;
+  }
+}
+main {
+  z-index: -1;
+}
+.hero-image {
+  z-index: -1;
+}
+
+
+
+/* landing navbar css -start */
+.nav-logo{
+  width: 60px;
+}
+
+.nav-heading{
+  display: flex;
+  align-items: center;
+}
+
+.landing-navbar-container{
+  color: white;
+}
+
+.landing-nav-top{
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--clr-saffron);
+  padding: 20px 40px;
+  z-index: 2;
+}
+
+.landing-nav-links{
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-nav-links);
+}
+
+#check{
+  display: none;
+}
+
+.landing-nav-ham-btn{
+  display: none;
+  position: fixed;
+  top: 35px;
+  right: 45px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.landing-nav-heading{
+  font-size: var(--fs-nav-heading);
+}
+
+.landing-nav-list-items{
+  padding: 10px;
+  margin-right: 5px;
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+
+.landing-nav-list-items:hover{
+  background-color: var(--clr-nav-hover);
+}
+
+.landing-nav-btn{
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid white;
+  margin-left: 10px;
+  font-size: var(--fs-nav-links);
+  color: white;
+  transition: all 0.5s;
+}
+
+.landing-nav-btn:hover{
+  background-color: white;
+  color: var(--clr-saffron);
+  font-weight: var(--fs-nav-links);
+}
+
+.landing-nav-bottom{
+  width: 100%;
+  background-color: var(--clr-saffron);
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  position: fixed;
+  transition: all 0.5s;
+  top: -100%;
+  z-index: 1;
+}
+
+.landing-nav-bottom-btn{
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid white;
+  font-size: var(--fs-nav-links);
+  color: white;
+  transition: all 0.5s;
+}
+
+.landing-nav-bottom-btn:hover{
+  background-color: white;
+  color: var(--clr-saffron);
+  font-weight: var(--fs-nav-links);
+}
+
+.landing-nav-bottom-links{
+  text-align: center;
+}
+
+.landing-nav-bottom-list-items{
+  padding: 10px;
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+
+.landing-nav-bottom-list-items:hover{
+  background-color: var(--clr-nav-hover);
+}
+
+.landing-nav-bottom-links li{
+  margin-bottom: 35px;
+}
+
+
+@media (max-width: 875px){
+  .landing-nav-links{
+      display: none;
+  }
+
+  .landing-nav-ham-btn{
+      display: flex;
+  }
+
+  #check:checked ~ div{
+      top: 72px;
+  }
+}
+
+/* landing navbar css -end */
+
+
+/*fundraiser hero css start*/
+.hero-container {
+
+    padding-top: 20px;
+  }
+  .hero-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .hero-heading {
+    margin-bottom: 2rem;
+    font-family: "Merriweather", serif;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-hero-head);
+    float: left;
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    display: block;
+  }
+  .hero-desc {
+    margin-bottom: 2rem;
+  
+    font-size: 24px;
+  }
+  .hero-desc-middle {
+    font-size: 20px;
+  }
+  
+  .hero-col-text {
+    /* flex-basis: 40%;*/
+    position: relative;
+    margin-left: 8%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-col-text h1 {
+    font-size: 50px;
+    color: #212121;
+    margin-bottom: 20px;
+  }
+  .hero-col-text p {
+    color: #555;
+    line-height: 22px;
+  }
+  
+  .hero-col-img {
+    position: relative;
+    width: 50%;
+    float: right;
+  }
+  
+  .hero-image {
+    margin-top: 10px;
+    height: 450px;
+    width: 640px;
+    padding: 0 24px;
+  }
+  
+  .hero-btn {
+    background: var(--clr-saffron);
+    margin-top: 25px;
+    border-radius: 22px;
+    font-family: Arial;
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 22px;
+    text-decoration: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    max-width: max-content;
+  }
+  
+  .hero-btn:hover {
+    background: var(--clr-nav-hover);
+  }
+  
+  .banner-numbers {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    margin-top: 30px;
+    font-size: 20px;
+  }
+  .number {
+    color: #ff5d2c;
+  }
+  
+  .number-text {
+    color: #5d5d5d;
+    font-weight: 400;
+  }
+  
+  .separator {
+    border-left: 1px solid #faad5f;
+    padding-left: 17px;
+  }
+  
+  .banner-flash-container {
+    margin: auto;
+    width: 50vw;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 85px;
+    border: 1px solid rgba(100, 100, 111, 0.2);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  .fa-circle-chevron-right {
+    color: #ff9933;
+    margin-left: 2px;
+  }
+  .free {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgba(100, 100, 111, 0.2);
+    background-color: white;
+    border-radius: 8px;
+    width: 70vw;
+    padding: 18px 20px;
+    margin: auto;
+    margin-top: 20px;
+    color: #5d5d5d;
+    font-weight: 600;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgb(255, 229, 207);
+    background: linear-gradient(
+      80deg,
+      rgba(255, 229, 207, 1) 0%,
+      rgba(255, 255, 255, 1) 64%
+    );
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  
+  .fa-bullhorn {
+    transform: rotate(-20deg);
+    color: #ff9933;
+    margin-right: 10px;
+  }
+  
+  .zero {
+    color: #ff5d2c;
+    font-size: 50px;
+    position: absolute;
+    right: 10px;
+    opacity: 0.5;
+  }
+
+  .support-headline {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    font-size: x-large;
+    font-weight: 400;
+  }
+  .diamond {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .diamond-small {
+    width: 15px;
+    height: 15px;
+    background: #ff5d2c;
+    transform: rotate(45deg);
+    margin: 10px 15px;
+    opacity: 0.5;
+  }
+  .diamond-big {
+    width: 20px;
+    height: 20px;
+    background: #ff5d2c;
+    transform: rotate(45deg);
+    margin: 10px 15px;
+  }
+  .underline {
+    width: 300px;
+  
+    height: 1px;
+    background-color: black;
+  }
+  .search {
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 3px 0;
+    width: 60vw;
+    border-radius: 30px;
+    border: 2px solid #ff9933;
+  }
+  
+  .search-bar {
+    font-size: 17px;
+    margin: auto;
+  
+    width: 80%;
+    border: none;
+    padding: 10px 20px;
+    background: transparent;
+  }
+  
+  .fa-magnifying-glass {
+    color: white;
+  }
+  .search-icon {
+    background-color: #ff9933;
+    border-radius: 0px 30px 30px 0px;
+    position: absolute;
+    right: 0;
+    padding: 15px;
+  }
+
+  /*fundraiser hero css end*/
+
+/*fundraiser cards start*/
+
+.fundraiser-cards{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 60px;
+    flex-wrap: wrap;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    display: table-cell;
+    width: 400px;
+    height: 525px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    background: white;
+  }
+  .card img {
+    border-radius: 10px 10px 0 0;
+    height: 275px;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .cards-container {
+    padding: 2px 16px;
+    position: relative;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: right;
+    margin-top: 1.25rem;
+    border: 0;
+    /* display: flex;
+    justify-content: flex-end; */
+    position: absolute;
+    left: 281px;
+    top: 168px;
+  }
+  
+  .btn a {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: white;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all 0.35s;
+    background: var(--clr-saffron);
+    width: max-content;
+    padding: 0px 20px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  .btn a span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .btn a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--clr-nav-hover);
+    transition: all 0.35s;
+    border-radius: 4px;
+  }
+  
+  .btn a:hover {
+    color: #fff;
+  }
+  
+  .btn a:hover:after {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .button{
+    font-weight: var(--fw-bold);
+  }
+
+/*fundraiser cards end*/
+
+
+.see-more-fundraiser{
+    text-align: center;
+    color: var(--clr-green);
+}
+
+.see-more-fundraiser a:hover{
+    text-decoration: underline;
+}
+
+
+/* fundraiser footer start */
+.fundraiser-footer-container{
+    background-color: #138808;
+    color: white;
+}
+
+.fundraiser-footer-img{
+    width: 100%;
+}
+
+.fundraiser-footer-content{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.fundraiser-footer-app-promotion {
+    width: 300px;
+    border-radius: 5px;
+}
+
+.fundraiser-footer-social-media{
+    display: flex;
+    justify-content: space-between;
+}
+
+.fundraiser-footer-icon{
+    color: white;
+    padding: 10px 13px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.3s;
+}
+
+.fundraiser-footer-twitter-icon{
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.3s;
+}
+
+.fundraiser-footer-icon:hover{
+    background-color: #064a00;
+}
+.fundraiser-footer-twitter-icon:hover{
+    background-color: #064a00;
+}
+
+.fundraiser-footer-col-head{
+    margin-bottom: 10px;
+}
+
+/* .landing-footer-content-col3 h2{
+    text-align: center;
+} */
+
+.fundraiser-footer-lists{
+    margin-bottom: 10px;
+}
+
+.fundraiser-footer-lists:hover{
+    text-decoration: underline;
+}
+
+.fundraiser-footer-h2-underline{
+    margin-bottom: 20px;
+    height: 1px;
+    width: 28px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.fundraiser-footer-content-col1{
+    padding-bottom: 30px;
+}
+.fundraiser-footer-content-col2{
+    padding-bottom: 30px;
+}
+.fundraiser-footer-content-col3{
+    padding-bottom: 30px;
+}
+.fundraiser-footer-content-col4{
+    padding-bottom: 30px;
+}
+
+.fundraiser-footer-points{
+    margin-bottom: 20px;
+}
+
+.fundraiser-footer-col0-icon{
+    margin-right: 10px;
+}
+
+.fundraiser-footer-col{
+    margin-right: 20px;
+}
+
+/*fundraiser footer end*/
+
+
+body {
+  background: rgb(255, 229, 207);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 229, 207, 1) 0%,
+    rgba(255, 255, 255, 1) 64%
+  );
+}

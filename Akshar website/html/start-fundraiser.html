@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/start-fundraiser.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <title>start Fundraiser</title>
+    <link rel="icon" href="../images/favicon.ico">
+</head>
+<body>
+    <nav>
+        <div class="start-fund-nav-container">
+          <div class="nav-heading">
+            <img class="nav-logo" src="../images/Akshar_logo_white.png" alt="nav-logo">
+            <h1 class="landing-nav-heading"> Akshar</h1>
+          </div>
+            <p class="nav-text">
+                Start a fundraiser
+            </p>
+        </div>
+    </nav>
+    <div class="middle-container">
+        <p class="fund-purpose">
+            I am raising fund for <span class="purpose">Education</span> cause
+        </p>
+        <div class="fund-category-content">
+            <span class="arrow-icon"><i class="fa-solid fa-caret-up"></i></span>
+            <div class="category-content">
+                <div class="category-row">
+                    <div class="category"><span class="category-icon"><i class="fa-solid fa-user-graduate"></i></span>Education</div>
+                    <div class="category even-category"><span class="category-icon"><i class="fa-solid fa-stethoscope"></i></span>Medical</div>
+                </div>
+                <div class="category-row">
+                    <div class="category"><span class="category-icon"><i class="fa-solid fa-table-tennis-paddle-ball"></i></span>Sports</div>
+                    <div class="category even-category"><span class="category-icon"><i class="fa-solid fa-palette"></i></span>Co-curricular activities</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <form method="post" id="start-fund-form">
+          <div class="txt_field">
+            <input type="text" required>
+            <span></span>
+            <label>Name</label>
+          </div>
+          <div class="txt_field">
+            <input type="email" required>
+            <span></span>
+            <label>Email ID</label>
+          </div>
+          <div class="txt_field">
+            <input type="tel" pattern="[0-9]{10}" required>
+            <span></span>
+            <label>Phone no.</label>
+          </div>
+          <div class="txt_field">
+            <input type="text" required>
+            <span></span>
+            <label>Problem Statement</label>
+          </div>
+            <textarea name="" id="textarea" cols="30" rows="10" form="start-fund-form" placeholder="Problem Description" required></textarea>
+            <div class="txt_field">
+                <input type="number" required>
+                <span></span>
+                <label>Target amount (in Rs.)</label>
+              </div>        
+        </form>
+        <div class="submit-button">
+            <a href="#">
+                <buttton type="submit" class="form-btn">
+                    Submit
+                </buttton>
+              </a>
+        </div>
+      </div>
+    
+    <script src="../js/start-fundraiser.js"></script>
+</body>
+</html>
