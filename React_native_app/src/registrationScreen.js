@@ -363,7 +363,7 @@ return (
 
                     <View name = "Password container" style={styles.passwordContainer}>
                         <TextInput
-                            placeholder='Password'
+                            placeholder='Password    (Atleast 6 characters)'
                             placeholderTextColor={pallete.placeholderColor}
                             style={styles.textInput}
                             secureTextEntry={passwordVisible}
@@ -383,9 +383,8 @@ return (
                             onChangeText={(data)=> setFormData({...formData,confirm_password:data})}
                             autoCapitalize="none"
                             
-                        />
+                            />
                         
-                       
                     </View>
                     <View>
                         <TouchableWithoutFeedback onPress={()=>{setPasswordVisible(!passwordVisible)}}>

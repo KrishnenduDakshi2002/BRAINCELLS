@@ -81,6 +81,10 @@ function OTPScreen({navigation,route}) {
 
     }
 
+    const backHandler = ()=>{
+        navigation.navigate("Registration");
+    }
+
     // this will send a POST request for registration
     const onClickContinue = async ()=>{
         const register_url = 'https://akshar-siksha.herokuapp.com/api/user/register/'.concat(OTP.toString());
@@ -104,15 +108,12 @@ function OTPScreen({navigation,route}) {
                 role : role
 
             })
-            });
+            }).then((res)=> res.json());
 
-            const status = register_res.status;
-            const json_res = register_res.json();
-
-            // console.log(register_res);
-            if(status == 400)
+            console.log(register_res);
+            if(register_res.status == 400)
             {
-               Alert.alert("User exists","You have an account on this email or phone number",
+               Alert.alert("Error Message",register_res.ErrorMessage,
                [
                     {
                         text: "Login",
@@ -124,9 +125,8 @@ function OTPScreen({navigation,route}) {
             }else{
 
                 navigation.navigate("TestDashBoard",{
-                    status: json_res.status,
-                    id : json_res.id,
-                    auth_token : json_res.auth_token
+                    status: register_res.status,
+                    auth_token : register_res.auth_token
     
                 });
 
@@ -236,6 +236,9 @@ function OTPScreen({navigation,route}) {
 
             <View name="buttons" style={styles.buttonContainer}>
                
+                <TouchableOpacity style={[styles.resend_btn,{marginBottom: 30}]} onPress={backHandler}>
+                    <Text style={styles.resend_text}>Back to registration</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.resend_btn} onPress={onClickResend}>
                     <Text style={styles.resend_text}>Resend OTP</Text>
                 </TouchableOpacity>
