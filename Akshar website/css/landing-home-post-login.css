@@ -297,8 +297,9 @@ margin-top: 21px;
 
 
 
-
-
+.feature-container{
+  margin-top: 115px;
+}
 
 body {
   background: rgb(255,209,160);
@@ -402,7 +403,7 @@ body {
 /* Slideshow container */
 .slideshow-container {
   padding-top: 110px;
-  max-width: 1000px;
+  max-width: 98%;
   position: relative;
   margin: auto;
 }
@@ -416,7 +417,7 @@ body {
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 54%;
   width: auto;
   margin-top: -22px;
   padding: 16px;
