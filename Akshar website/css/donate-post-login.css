@@ -296,7 +296,6 @@ margin-top: 21px;
 
 
 
-
 .donate-container {
   padding-top: 65px;
 }
@@ -337,7 +336,11 @@ margin-top: 21px;
 }
 .card img {
   border-radius: 10px 10px 0 0;
-  height: 275px;
+  height: 133px;
+}
+
+.card-container p{
+  text-align: justify;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -348,6 +351,14 @@ margin-top: 21px;
   padding: 2px 16px;
   position: relative;
 }
+.row3 .card{
+  height: 490px;
+}
+.row3 .card .btn{
+  top: 281px;
+}
+
+
 
 .see-more {
   display: flex;
@@ -394,6 +405,7 @@ margin-top: 21px;
 }
 
 .achievements-achievement-img {
+  opacity: 0.7;
   height: 100px;
   margin-bottom: 16px;
 }
@@ -422,7 +434,7 @@ margin-top: 21px;
   justify-content: flex-end; */
   position: absolute;
   left: 186px;
-  top: 75px;
+  top: 216px;
 }
 
 .btn a {

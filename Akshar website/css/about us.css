@@ -201,6 +201,8 @@
   color: var(--color-text);
 
   padding: 5px 0px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .about-us-heading {
@@ -208,7 +210,7 @@
   /* font-family: var(--ff-header); */
   font-weight: var(--fw-bold);
   font-size: var(--fs-nav-heading);
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   background-image: linear-gradient(
     -225deg,
     #ff9933 0%,
@@ -251,9 +253,6 @@
   align-items: center;
   flex-direction: column;
   max-width: 45%;
-  animation-name: about-us-col-img;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
 }
 
 @keyframes about-us-col-img {

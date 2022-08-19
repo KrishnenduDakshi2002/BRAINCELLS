@@ -532,38 +532,43 @@ margin-top: 21px;
 
 /*fundraiser cards start*/
 
-.fundraiser-cards{
-    display: flex;
-    justify-content: space-evenly;
-    margin: 60px;
-    flex-wrap: wrap;
+.row {
+  border-spacing: 20px;
+  margin: 0px 150px;
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    display: table-cell;
-    width: 400px;
-    height: 525px;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    background: white;
-  }
-  .card img {
-    border-radius: 10px 10px 0 0;
-    height: 275px;
-  }
-  
-  /* On mouse-over, add a deeper shadow */
-  .card:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  display: table-cell;
+  width: 300px;
+  height: 425px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  background: white;
+}
+.card img {
+  border-radius: 10px 10px 0 0;
+  height: 133px;
+}
 
-  .cards-container {
-    padding: 2px 16px;
-    position: relative;
-  }
+.card-container p{
+  text-align: justify;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card-container {
+  padding: 2px 16px;
+  position: relative;
+}
 
   .btn {
     width: 100%;
@@ -573,8 +578,8 @@ margin-top: 21px;
     /* display: flex;
     justify-content: flex-end; */
     position: absolute;
-    left: 281px;
-    top: 168px;
+    left: 186px;
+    top: 216px;
   }
   
   .btn a {
@@ -629,6 +634,7 @@ margin-top: 21px;
   }
 
 /*fundraiser cards end*/
+
 
 
 .see-more-fundraiser{
