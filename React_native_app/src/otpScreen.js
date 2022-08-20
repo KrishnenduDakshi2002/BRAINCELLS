@@ -14,12 +14,16 @@ import {View,
 
 } from 'react-native';
 
+// confirm text pre color : #28800b
+
 const pallete = {
-    resend_text_color:"#006FFD",
-    confirm_btn: "#006FFD",
+    heading_color : "#FF9933",
+    resend_text_color:"#28800b",
+    confirm_btn: "#28800b",
     confirm_text_color:"white",
-    screen_background : "white",
-    description_text : "grey"
+    screen_background : "#fbf5f2",
+    description_text : "grey",
+    otp_box_color : '#fbf5f2'
 }
 
 
@@ -124,11 +128,8 @@ function OTPScreen({navigation,route}) {
                 ])
             }else{
 
-                navigation.navigate("TestDashBoard",{
-                    status: register_res.status,
-                    auth_token : register_res.auth_token
-    
-                });
+                navigation.navigate("Login");  // after sucessful registration user will navigate to login screen
+                // then he/she can continue with his/her profile
 
             }
             
@@ -244,7 +245,7 @@ function OTPScreen({navigation,route}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.confirm_btn} onPress={onClickContinue}>
-                    <Text style={styles.confirm_text}>Continue</Text>
+                    <Text style={styles.confirm_text}>Confirm</Text>
                 </TouchableOpacity>
 
             </View>
@@ -291,6 +292,7 @@ const useStyle= ()=>{
             fontSize:width/20,
             marginBottom:width/50,
             fontWeight:"bold",
+            color:pallete.heading_color,
         },
         description:{
             width:width/2,
@@ -307,7 +309,7 @@ const useStyle= ()=>{
             alignItems:"center",
         },
         box:{
-            backgroundColor:"white",
+            backgroundColor:pallete.otp_box_color,
             margin:5,
             width: width/7.5,
             height: width/7.5,

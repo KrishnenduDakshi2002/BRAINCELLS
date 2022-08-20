@@ -25,13 +25,16 @@ import { AntDesign ,Ionicons} from '@expo/vector-icons';
 
 let pallete = {
 
-  placeholderColor : "lightgrey",
+  placeholderColor : "darkgrey",
   borderColor : "black",
-  register_btn_color :"#20590d",
+  register_btn_color :"#28800b",
   login_btn_color : "#20590d",
-  showPasswordColor : 'blue',
+  showPasswordColor : '#28800b',
   modelCancel_btn_color : "red",
   modal_body_color : "white",
+  backgroundColor : '#fbf5f2',
+  text_input : "white",
+  header_color : '#FF9933'
 
 }
 
@@ -183,7 +186,7 @@ const phoneRegex = /[0-9]{10}/;
 return (
 
     <ImageBackground 
-    // source={require("../assets/leaves.jpg")}
+    source={require("../assets/Background.png")}
     style={{ height: Dimensions.get("screen").height / 1}}
     >
         <KeyboardAwareScrollView
@@ -401,7 +404,7 @@ return (
                     <View name="login button wrapper"style={styles.login_button}>
                         <Text>Already registered? </Text>
                         <TouchableWithoutFeedback onPress={onClickLogin} >
-                            <Text style={{color:pallete.login_btn_color}}>
+                            <Text style={{color:pallete.login_btn_color,fontWeight:"bold"}}>
                             Login now
                             </Text>
                         </TouchableWithoutFeedback>
@@ -467,11 +470,11 @@ const useStyle = ()=>
       container: {
         flex: 1,
         padding: width /25,
-        backgroundColor:"white"
+        backgroundColor:pallete.backgroundColor,
     },
     FormContainer: {
         flex: 1,
-        padding: width /15,
+        padding: width /20,
         paddingBottom: height/5.5,
         // backgroundColor:"yellow"
       },
@@ -482,28 +485,38 @@ const useStyle = ()=>
         margin: 12,
         textAlign: "center",
         fontWeight: 'bold',
+        color: pallete.header_color,
       },
       inputTextWrapper: {
         marginBottom: 24,
-        height: 40,
-        borderColor: pallete.borderColor,
-        borderBottomWidth: 1,
+        height: height/15,
+        // borderColor: pallete.borderColor,
+        // borderBottomWidth: 1,
+        backgroundColor:pallete.text_input,
+        borderRadius: 50,
+        padding:width/30,
         justifyContent:"center",
       },
       passwordContainer:{
         flexDirection:"row",
         marginBottom: 24,
-        height: 40,
-        borderColor: pallete.borderColor,
-        borderBottomWidth: 1,
+        height: height/15,
+        // borderColor: pallete.borderColor,
+        // borderBottomWidth: 1,
+        backgroundColor:pallete.text_input,
+        borderRadius: 50,
+        padding:width/30,
         justifyContent:"space-between",
 
       },
       dropDownContainer:{
         marginBottom: 24,
-        height: 40,
-        borderColor: pallete.borderColor,
-        borderBottomWidth: 1,
+        height: height/15,
+        // borderColor: pallete.borderColor,
+        // borderBottomWidth: 1,
+        backgroundColor:pallete.text_input,
+        borderRadius: 50,
+        padding:width/30,
         justifyContent:"center",
       },
       placeholderStyle: {

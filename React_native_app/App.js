@@ -6,8 +6,13 @@ import { Text ,View, StyleSheet, Pressable} from 'react-native';
 
 import Registration from './src/registrationScreen';
 import Login from './src/Login';
-import TestDashBoard from './src/TestDashBoard';
 import OTPScreen from './src/otpScreen';
+import Upload from './src/upload';
+import DatetimePicker from './src/datetimePicker';
+import Classroom from './src/Classroom';
+import UserDashBoard from './src/UserDashBoard';
+import ClassroomsContainer from './src/ClassroomContainerScreen';
+import TestContainer from './src/TestContainerScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,9 +24,13 @@ export default function App() {
       <Stack.Navigator screenOptions={{header: ()=> null}}>
 
         <Stack.Screen name='Login' component={Login }/>
-        <Stack.Screen name='TestDashBoard' component={TestDashBoard }/>
-        <Stack.Screen name='Registration' component={Registration }/> 
-        <Stack.Screen name='OTPScreen' component={OTPScreen }/>
+        {/* <Stack.Screen name='Registration' component={Registration }/> 
+        <Stack.Screen name='OTPScreen' component={OTPScreen }/> */}
+        <Stack.Screen name='UserDashBoard' component={UserDashBoard}/>
+        {/* <Stack.Screen name='DatetimePicker' component={DatetimePicker }/> */}
+        <Stack.Screen name='Classroom' component={Classroom }/> 
+        <Stack.Screen name='ClassroomsContainer' component={ClassroomsContainer} />
+        <Stack.Screen name='TestContainer' component={TestContainer} />
 
       </Stack.Navigator>
     </NavigationContainer>

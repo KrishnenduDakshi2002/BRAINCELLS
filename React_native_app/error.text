@@ -1,0 +1,25 @@
+
+
+
+// While trying to resolve module 'idb' ....Indeed none of these files exists
+// problem with the current version of firebase
+
+// installed firebase 9.6.11
+
+npm install --save firebase@9.6.11
+
+https://stackoverflow.com/questions/72179070/react-native-bundling-failure-error-message-while-trying-to-resolve-module-i
+
+
+
+
+
+
+
+
+// TypeError: Network request failed when fetching a file:// uri #2402
+
+https://github.com/expo/expo/issues/2402
+
+
+
