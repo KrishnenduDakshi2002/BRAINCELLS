@@ -146,10 +146,10 @@ const get_classroom = async ()=>{
 }
 
 
-useEffect(async () => {
-    console.log("Running useeffect");
+useEffect(() => {
+  console.log("Running useeffect");
 
-    get_classroom();
+  get_classroom();
 
   }, []);
 

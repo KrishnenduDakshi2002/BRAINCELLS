@@ -31,17 +31,28 @@ function DatetimePicker() {
     const [text, setText] = useState("Empty");
 
 
-    
+    function padding(){
+
+    }
+
     const onChangeDateTime = (selectedDate)=>{
         
         const inputDate = selectedDate['nativeEvent']['timestamp']
 
-        const currentDate = inputDate || date ;
-        console.log(currentDate);
+        const currentDate = new Date(inputDate) || date;
         setShow(Platform.OS === 'ios');
-        let tempDate = moment(currentDate).toDate();
-        setDate(tempDate);
-        let timeStamp = tempDate.getFullYear()+'-'+tempDate.getMonth()+'-'+tempDate.getDate()+'T'+tempDate.getHours()+':'+tempDate.getMinutes()+':'+tempDate.getSeconds()+'Z';
+        setDate(currentDate);
+        console.log(currentDate)
+
+        let timeStamp = 
+      
+      currentDate.getFullYear()+'-'
+      
+      +String(currentDate.getMonth()+1).padStart(2, '0')+'-'
+      +String(currentDate.getDate()).padStart(2, '0')+'T'
+      +String(currentDate.getHours()).padStart(2, '0')+':'
+      +String(currentDate.getMinutes()).padStart(2, '0')+':'
+      +String(currentDate.getSeconds()).padStart(2, '0')+'Z';
         setText(timeStamp);
 
     }

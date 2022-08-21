@@ -201,6 +201,7 @@ function Material() {
     }, 
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log(downloadURL);
         setUrl(downloadURL);
       });
     }
@@ -208,21 +209,24 @@ function Material() {
 
     // // Pushing data and link to database
 
-    const material_url = 'https://akshar-siksha.herokuapp.com/api/data/classroom/post/materials/'+ context.classroom_id;
+    if(url){
+      const material_url = 'https://akshar-siksha.herokuapp.com/api/data/classroom/post/materials/'+ context.classroom_id;
+  
+      const res = await fetch(material_url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization' : 'Bearer '+ context.auth_token
+        },
+        body: JSON.stringify({
+          topic: materialTopic,
+          link : url
+        })
+      }).then((res)=> res.json())
+      .then((json)=> console.log(json));
+    }
 
-    const res = await fetch(material_url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization' : 'Bearer '+ context.auth_token
-      },
-      body: JSON.stringify({
-        topic: materialTopic,
-        link : url
-      })
-    }).then((res)=> res.json())
-    .then((json)=> console.log(json));
     
   }
 
@@ -365,29 +369,34 @@ function Material() {
           
 
       </ScrollView>
-      <Pressable style={styles.floating_button} onPress={()=> {
-        askPermission();
-        setShowModal(current => !current);
-
-
-        // resetting the values for new upload
-
-        if(!IsChoosen){
-          setIsChoosen(current => !current);
-        }
-        if(IsUploaded){
-          setIsUploaded(current => !current);
-        }
-
-        percentageValue = 0;
-
-        // resetting ends here
-
-
+      {
+        (context.role === "TEACHER") &&
+        (
+          <Pressable style={styles.floating_button} onPress={()=> {
+            askPermission();
+            setShowModal(current => !current);
+    
+    
+            // resetting the values for new upload
+    
+            if(!IsChoosen){
+              setIsChoosen(current => !current);
+            }
+            if(IsUploaded){
+              setIsUploaded(current => !current);
+            }
+    
+            percentageValue = 0;
+    
+            // resetting ends here
+    
+    
+          }
+            }>
+          <AntDesign name="pluscircle" size={55} color="black" />
+          </Pressable>
+        )
       }
-        }>
-      <AntDesign name="pluscircle" size={55} color="black" />
-      </Pressable>
   
     </>
   )

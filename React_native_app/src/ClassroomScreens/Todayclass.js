@@ -8,7 +8,7 @@ import { AntDesign} from '@expo/vector-icons';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-// import moment  from 'moment';
+import moment  from 'moment';
 
 
 // importing the classroom context from classroom.js
@@ -41,9 +41,9 @@ function TodayClass() {
     const [refreshing, setRefreshing] = React.useState(false);
 
     var initial_classform ={
-      topic : '',
-      subject : '',
-      teacher : ''
+      topic : "",
+      subject : "",
+      teacher : ""
     }
 
     const [classForm, setClassForm] = useState(initial_classform)
@@ -73,9 +73,19 @@ function TodayClass() {
       const inputDate = selectedDate['nativeEvent']['timestamp']
       const currentDate = new Date(inputDate) || date;
       setShow(Platform.OS === 'ios');
-      setDate(currentDate);
-      let currentDateStamp = currentDate.getFullYear()+'-'+(currentDate.getMonth()+1)+'-'+currentDate.getDate()+'T'+currentDate.getHours()+':'+currentDate.getMinutes()+':'+currentDate.getSeconds()+'Z';
+      setDate(currentDate);      
+
+      let currentDateStamp = 
+      
+      currentDate.getFullYear()+'-'
+      
+      +String(currentDate.getMonth()+1).padStart(2, '0')+'-'
+      +String(currentDate.getDate()).padStart(2, '0')+'T'
+      +String(currentDate.getHours()).padStart(2, '0')+':'
+      +String(currentDate.getMinutes()).padStart(2, '0')+':'
+      +String(currentDate.getSeconds()).padStart(2, '0')+'Z';
       setText(currentDateStamp);
+      console.log(currentDateStamp);
   }
 
     const showMode = (currentMode)=>{
@@ -121,40 +131,42 @@ function TodayClass() {
     
 
   }
+
 // ************************************************************************************************************************************************
   const createNewClass = async() => {
     console.log("running create classroom");
     if (!classForm.topic && !classForm.subject) {
       Alert.alert("Topic and subject are mandatory fields");
-
       return;
     }
 
-    try {
-        await fetch('https://akshar-siksha.herokuapp.com/api/data/classroom/create/class', {
-        method: 'POST',
+      const url = 'https://akshar-siksha.herokuapp.com/api/data/classroom/post/class/'+context.classroom_id;
+      const res = await fetch(url,{
+        method: 'POST', 
         headers: {
-          Accept: 'application/json',
+          Accept: "application/json",
           'Content-Type': 'application/json',
           'Authorization' : 'Bearer '+ context.auth_token
         },
-        body:JSON.stringify({
-          classroom_id : context.classroom_id,
-          topic : classForm.topic,
-          subject : classForm.subject,
-          teacher : classForm.teacher,
-          dateTime : text
+        body: JSON.stringify({
+          "topic": classForm.topic,
+          "subject" : classForm.subject,
+          "teacher" : classForm.teacher,
+          "dateTime" : text
         })
-      }).then((response)=> response.json()).then((data)=> console.log(data));
-    } catch (error) {
-      console.log("error while fetching");
+      })
+        .then((response) => response.json())
+
+    if (res.status === 201) {
+      setIsCreated((current) => !current);
+    } else if (res.status === 400) {
+      Alert.alert("Coudn't create class");
     }
-    
   };
 
 // ************************************************************************************************************************************************
 
-
+console.log(context.role);
   return (
     <>
     {show && (
@@ -210,18 +222,15 @@ function TodayClass() {
                   style={styles.classroom_details_input}
                 />
 
-                {/* { (text !== "") &&(
+                { (text !== "") &&(
                   <Text>{moment(text).format('LTS') + " "+`( ${moment(text).fromNow()} )`}</Text>)
 
-                } */}
+                }
 
 
                 <View style={styles.dateTimeContainer}>
-                <Pressable onPress={()=>{showMode('date')}}>
+                <Pressable onPress={()=>{showMode('time')}}>
                     <Image source={require('../../assets/calendar.png')} style={{width: 50,height:50}}/>
-                  </Pressable>
-                  <Pressable onPress={()=>{showMode('time')}}>
-                    <Image source={require('../../assets/clock.png')} style={{width: 50,height:50}}/>
                   </Pressable>
                 </View>
 
@@ -296,15 +305,23 @@ function TodayClass() {
             />)
         }
     </ScrollView>
-    <Pressable style={styles.floating_button} onPress={()=> {
-        setText(initial_text);
-        setShowModal((current) => !current);
-        setIsCreated(false);
 
-      }
-        }>
-      <AntDesign name="pluscircle" size={55} color="black" />
+    {
+      (context.role === 'TEACHER') &&(
+        <Pressable style={styles.floating_button} onPress={()=> {
+          setText(initial_text);
+          setShowModal((current) => !current);
+          setIsCreated(false);
+  
+        }
+          }>
+        <AntDesign name="pluscircle" size={55} color="black" />
       </Pressable>
+      )
+
+    }
+
+   
   
     
     </>

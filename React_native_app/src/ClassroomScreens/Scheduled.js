@@ -74,9 +74,19 @@ function ScheduledClass() {
       const inputDate = selectedDate['nativeEvent']['timestamp']
       const currentDate = new Date(inputDate) || date;
       setShow(Platform.OS === 'ios');
-      setDate(currentDate);
-      let currentDateStamp = currentDate.getFullYear()+'-'+(currentDate.getMonth()+1)+'-'+currentDate.getDate()+'T'+currentDate.getHours()+':'+currentDate.getMinutes()+':'+currentDate.getSeconds()+'Z';
+      setDate(currentDate);      
+
+      let currentDateStamp = 
+      
+      currentDate.getFullYear()+'-'
+      
+      +String(currentDate.getMonth()+1).padStart(2, '0')+'-'
+      +String(currentDate.getDate()).padStart(2, '0')+'T'
+      +String(currentDate.getHours()).padStart(2, '0')+':'
+      +String(currentDate.getMinutes()).padStart(2, '0')+':'
+      +String(currentDate.getSeconds()).padStart(2, '0')+'Z';
       setText(currentDateStamp);
+      console.log(currentDateStamp);
   }
 
     const showMode = (currentMode)=>{
@@ -103,34 +113,37 @@ function ScheduledClass() {
     // console.log(context.ScheduledClassesDataArray);
 
     // ************************************************************************************************************************************************
-  const createNewClass = async () => {
-    console.log("running create classroom");
-    if (!classForm.topic && !classForm.subject) {
-      Alert.alert("Topic and subject are mandatory fields");
-      return;
-    }
-
-    // const res = await fetch('https://akshar-siksha.herokuapp.com/api/data/classroom/create/class', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-
-    //   },
-    //   body: JSON.stringify({
-    //     firstParam: 'yourValue',
-    //     secondParam: 'yourOtherValue'
-    //   })
-    // });
-
-    // console.log(res);
-
-    // if (res.status === 201) {
-    //   setIsCreated((current) => !current);
-    // } else if (res.status === 400) {
-    //   Alert.alert("Coudn't create class");
-    // }
-  };
+    const createNewClass = async() => {
+      console.log("running create classroom");
+      if (!classForm.topic && !classForm.subject) {
+        Alert.alert("Topic and subject are mandatory fields");
+        return;
+      }
+  
+        const url = 'https://akshar-siksha.herokuapp.com/api/data/classroom/post/class/'+context.classroom_id;
+        const res = await fetch(url,{
+          method: 'POST', 
+          headers: {
+            Accept: "application/json",
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer '+ context.auth_token
+          },
+          body: JSON.stringify({
+            "topic": classForm.topic,
+            "subject" : classForm.subject,
+            "teacher" : classForm.teacher,
+            "dateTime" : text
+          })
+        })
+          .then((response) => response.json())
+  
+      if (res.status === 201) {
+        setIsCreated((current) => !current);
+      } else if (res.status === 400) {
+        Alert.alert("Coudn't create class");
+      }
+    };
+  
 
 // ************************************************************************************************************************************************
 
@@ -276,15 +289,20 @@ function ScheduledClass() {
           }
       </ScrollView>
 
-      <Pressable style={styles.floating_button} onPress={()=> {
+      {
+      (context.role === 'TEACHER') &&(
+        <Pressable style={styles.floating_button} onPress={()=> {
           setText(initial_text);
           setShowModal((current) => !current);
           setIsCreated(false);
-      }
-        }>
-      <AntDesign name="pluscircle" size={55} color="black" />
-      </Pressable>
   
+        }
+          }>
+        <AntDesign name="pluscircle" size={55} color="black" />
+      </Pressable>
+      )
+
+    }
 
     </>
   )
