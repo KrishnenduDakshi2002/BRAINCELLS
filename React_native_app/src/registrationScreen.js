@@ -80,8 +80,7 @@ function RegistrationScreen({navigation}) {
   //DROPDOWN DATA
   const data = [
     { label: 'Student', value: 'STUDENT' },
-    { label: 'Teacher', value: 'TEACHER' },
-    { label: 'Institute', value: 'INSTITUTE' }
+    { label: 'Teacher', value: 'TEACHER' }
   ];
 
 // check for email or phoneNumber

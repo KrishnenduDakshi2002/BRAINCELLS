@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import {
   Text,
   View,
@@ -23,6 +23,9 @@ import { AntDesign } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 
 import * as Clipboard from "expo-clipboard";
+import Student from "./ClassroomScreens/Student";
+
+
 
 let pallete = {
   upload_model_bgc: "#FF9933",
@@ -49,6 +52,7 @@ function ClassroomsContainer() {
 
   // is create classroom
   const [IsCreated, setIsCreated] = useState(false);
+
 
   const initial_ClassroomForm = {
     Title: "",
@@ -94,6 +98,7 @@ function ClassroomsContainer() {
   }, []);
 
 // ****************************************************************** Loading screen from API ******************************************************************
+
 
 const load_screen = () => {
   
@@ -165,11 +170,6 @@ const onPressDelete = async (classroom_id)=> {
   }
   }).then((res) => res.json()).then((json)=> console.log("This is from deleting function : ",json));
 };
-
-const test = (classroom_id)=>{
-  console.log("this is a teset");
-  console.log(classroom_id)
-}
 
 // ************************************************************************************************************************************************
 
@@ -266,7 +266,15 @@ const test = (classroom_id)=>{
         </View>
       </Modal>
 
-      <View style={styles.header}>{/* <Text>Hellow</Text> */}</View>
+      <View style={styles.header}>
+       <View style={styles.icon}>
+         <Image source={require('../assets/lecture.png')} style={styles.icon_image}/>
+        </View>  
+
+        <Text style={styles.header_text}>CLASSROOMS</Text>
+
+
+      </View>
       <View style={styles.scrollContainer}>
         <ScrollView
           // contentContainerStyle={styles.scrollContainer}
@@ -282,6 +290,7 @@ const test = (classroom_id)=>{
               <ClassroomComponent
                 key={obj._id}                             // id
                 id = {obj._id}                            // key
+                role = {route.params.role}
                 title={obj.Title}                         //title
                 subject={obj.Subject}                     //subject
                 clickTocopyClickBoard={() => {            // function for Clipboard
@@ -306,7 +315,10 @@ const test = (classroom_id)=>{
             ))}
         </ScrollView>
       </View>
-      <Pressable
+
+      {
+      (route.params.role == 'TEACHER') &&(
+        <Pressable
         style={styles.floating_button}
         onPress={() => {
           setShowModal((current) => !current);
@@ -316,6 +328,13 @@ const test = (classroom_id)=>{
       >
         <AntDesign name="pluscircle" size={55} color="black" />
       </Pressable>
+      )
+
+    }
+
+
+
+      
     </View>
   );
 }
@@ -328,9 +347,31 @@ const useStyle = () => {
       backgroundColor: "#f75200",
     },
     header: {
-      flex: 0.3,
+      flex: 0.5,
       backgroundColor: "#f75200",
       height: 100,
+      justifyContent: "flex-end",
+      alignItems: "center",
+      paddingTop: 10,
+      paddingBottom: 20,
+    },
+    icon: {
+      backgroundColor: "white",
+      borderRadius: 50,
+      width: width / 3.5,
+      height: width / 3.5,
+      justifyContent: "center",
+      alignItems: "center",
+      marginBottom: 20,
+    },
+    icon_image: {
+      width: width / 6,
+      height: width / 6,
+    },
+
+    header_text: {
+      fontWeight: "bold",
+      fontSize: width / 20,
     },
     scrollContainer: {
       flex: 1,

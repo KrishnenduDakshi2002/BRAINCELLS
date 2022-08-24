@@ -41,7 +41,7 @@ const useStyle = ()=>{
     const styles = StyleSheet.create({
         container:{
             flexDirection:'row',
-            backgroundColor: "yellow",
+            backgroundColor: "#04cc75",
             width : '100%',
             height : width/2.5,
             padding: 15,

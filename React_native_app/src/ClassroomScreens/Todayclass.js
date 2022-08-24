@@ -167,6 +167,7 @@ function TodayClass() {
 // ************************************************************************************************************************************************
 
 console.log(context.role);
+console.log(DataArray);
   return (
     <>
     {show && (
@@ -223,14 +224,14 @@ console.log(context.role);
                 />
 
                 { (text !== "") &&(
-                  <Text>{moment(text).format('LTS') + " "+`( ${moment(text).fromNow()} )`}</Text>)
+                  <Text>{"today at "+moment.utc(text).format('LTS')}</Text>)
 
                 }
 
 
                 <View style={styles.dateTimeContainer}>
                 <Pressable onPress={()=>{showMode('time')}}>
-                    <Image source={require('../../assets/calendar.png')} style={{width: 50,height:50}}/>
+                    <Image source={require('../../assets/clock.png')} style={{width: 50,height:50}}/>
                   </Pressable>
                 </View>
 
@@ -296,6 +297,7 @@ console.log(context.role);
     }
     >
         {
+          DataArray && 
             DataArray.map((class_obj)=> <ClassComponent 
             key = {class_obj._id}
             topic = {class_obj.topic}
@@ -304,6 +306,7 @@ console.log(context.role);
             dateTime = {class_obj.dateTime}
             />)
         }
+        
     </ScrollView>
 
     {

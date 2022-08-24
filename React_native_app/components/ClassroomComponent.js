@@ -35,9 +35,11 @@ const ClassroomComponent = (props) => {
             <Text style={styles.subject}>{props.subject}</Text>
         </View>
         <View style={styles.icon}>
+        {props.role === "TEACHER" && (
             <Pressable onPress={props.onPressDelete}>
                 <Image source={require('../assets/dustbin.png')} style={{width:30,height:30,marginRight:10}}/>
             </Pressable>
+        )}
         </View>
     </View>
 

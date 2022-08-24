@@ -12,14 +12,12 @@ import { Text,
 
 import * as Linking from 'expo-linking';
 
-import { Entypo } from '@expo/vector-icons';
-
 const MaterialComponent = (props) => {
     const {styles}= useStyle();
 
 
-    const openLink = (url)=>{
-        Linking.openURL(url);
+    const openLink = (link)=>{
+        Linking.openURL(link);
     }
 
 
@@ -28,18 +26,15 @@ const MaterialComponent = (props) => {
     <View style={styles.container}>
         <Pressable style={{justifyContent:"center",alignItems:"center", marginRight: 15}} 
         onPress={()=>{
-            console.log("material pressed");
             openLink(props.link);
         }}
         >
             <View style={styles.icon}>
-                <Image source={require('../assets/pdf.png')} style={{width:50, height:50}}/>
+                <Image source={require('../assets/pdf.png')} style={{width:40, height:40}}/>
             </View>
         </Pressable>
         <View style={styles.details}>
-            <Text style={styles.topic}>{props.topic}</Text>
             <Text style={styles.provided_by}>{props.provided_by}</Text>
-            <Text style={styles.dateTime}>{props.dateTime}</Text>
         </View>
         
     </View>
@@ -55,7 +50,7 @@ const useStyle = ()=>{
             flexDirection:'row',
             backgroundColor: "#04cc75",
             width : '100%',
-            height : width/2.5,
+            height : width/4,
             padding: 15,
             borderRadius: 25,
             marginBottom: 15
@@ -64,7 +59,6 @@ const useStyle = ()=>{
             flex:0.3,
             alignItems:"center",
             paddingTop: 10,
-            // backgroundColor:"dodgerblue",
             justifyContent:"center",
             alignItems:"center"
         },
@@ -72,7 +66,8 @@ const useStyle = ()=>{
             flex:1,
             justifyContent:'center',
             alignItems:'center',
-            // backgroundColor:"pink"
+            backgroundColor:"#b0f5cc",
+            borderRadius:20
             
         },
         topic:{
@@ -86,8 +81,9 @@ const useStyle = ()=>{
         provided_by:{
             
             width:'100%',
-            fontSize: height/50,
+            fontSize: height/40,
             marginBottom : height/70,
+            textAlign:"center"
         },
         dateTime:{
             

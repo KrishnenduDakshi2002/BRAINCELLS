@@ -1,4 +1,4 @@
-import React, { Component, useState,useEffect } from "react";
+import React, { Component, useState,useEffect,createContext } from "react";
 import {
     Image,
   Keyboard,
@@ -21,11 +21,20 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import { useRoute,useNavigation } from '@react-navigation/native';
 
-// import { Dropdown } from "react-native-element-dropdown";
 
 import { AntDesign, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-// import { BaseNavigationContainer , DefaultTheme, DarkTtheme, useTheme  } from '@react-navigation/native';
-// import { render } from "react-dom";
+
+
+
+// creating a new context using Context API
+
+const UserDashBoardContext = createContext();                // this context will be available to all children (also children of a child)
+
+export {UserDashBoardContext};
+
+
+
+
 
 
 function UserDashBoard() {
@@ -33,6 +42,11 @@ function UserDashBoard() {
   // Navigation
   const navigation = useNavigation();
   const route = useRoute();
+
+
+  const [classroomsArray, setClassroomsArray] = useState([]);
+  const [testsArray, setTestsArray] = useState([]);
+
 
 
   const onClickClassRoom = (data) => {
@@ -45,7 +59,7 @@ function UserDashBoard() {
   useEffect(() => {
     console.log("Running useeffect");
 
-        fetch('https://akshar-siksha.herokuapp.com/api/data/get/user/dashboard',{
+        const res = fetch('https://akshar-siksha.herokuapp.com/api/data/get/user/dashboard',{
             method: 'GET',
             headers: {
               Accept: 'application/json',
@@ -55,8 +69,8 @@ function UserDashBoard() {
           })
           .then((response) => response.json())
           .then((data)=> setDashboard_res(data))
-
   }, [])
+
 
 let user_details ={}
 if(dashboard_res.User){
@@ -117,7 +131,7 @@ if(dashboard_res.User){
                 
                 <Text style={styles.description}>{user_details.address}</Text>
                 
-                <Text style={styles.description}>{'Class : '+ dashboard_res.User.Class}</Text>
+                <Text style={styles.description}>{ (dashboard_res.User.Class) ? 'Class : '+ dashboard_res.User.Class : null}</Text>
                 </View>
             </View>
           </View>
@@ -137,28 +151,43 @@ if(dashboard_res.User){
                 <Text style={styles.CategoryText}>Class Room</Text>  
                 </View>
               </TouchableOpacity> 
-                          
-              <TouchableOpacity style={styles.buttonContainer2} onPress={()=>{}}>
-              <View style={styles.CategoryContainer}>
-              <MaterialIcons name="schedule" size={75} color="#FF467E" />
-                <Text style={styles.CategoryText}>Test Schedule</Text> 
-                </View>
-              </TouchableOpacity>
-              </View>
-              
-              <View style={styles.Grp2}>
+
+              {/* 
               <TouchableOpacity style={styles.buttonContainer3} onPress={()=>{}}>
               <View style={styles.CategoryContainer}>
               <AntDesign name="barschart" size={75} color="#00ADB5" /> 
                 <Text style={styles.CategoryText}>Achievements</Text> 
                 </View>
-              </TouchableOpacity>              
-              <TouchableOpacity style={styles.buttonContainer4} onPress={()=>{}}>
+              </TouchableOpacity>   
+               */}
+                          
+              
+              </View>
+              
+              <View style={styles.Grp2}>
+              
+
+              {/* <TouchableOpacity style={styles.buttonContainer4} onPress={()=>{}}>
               <View style={styles.CategoryContainer}>
               <MaterialIcons name="settings" size={75} color="#443737" />
                 <Text style={styles.CategoryText}>Settings</Text> 
                 </View>
+              </TouchableOpacity> */}
+
+              <TouchableOpacity style={styles.buttonContainer2} onPress={()=>{
+                  
+                  navigation.navigate("TestContainer",{"auth_token": route.params.auth_token,"role":user_details.role});
+
+              }}>
+              <View style={styles.CategoryContainer}>
+              <MaterialIcons name="schedule" size={75} color="#FF467E" />
+                <Text style={styles.CategoryText}>Test Schedule</Text> 
+                </View>
               </TouchableOpacity>
+
+              
+
+
               </View>
             </View>
           </View>

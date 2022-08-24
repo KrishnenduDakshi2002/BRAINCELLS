@@ -10,7 +10,7 @@ const ClassroomHeader = (props) => {
   return (
     <View name="header" style={[styles.header,{...props.style}]}>
       <View name="classroom Details" style={styles.description}>
-        <Text>Hello</Text>
+        <Text>Classroom</Text>
       </View>
     </View>
   );
@@ -32,7 +32,7 @@ const useStyle = (style)=>{
         },
         description:{
             flex:1,
-            backgroundColor:"red",
+            backgroundColor:"#f75200",
             width : width,
             justifyContent:"center",
             alignItems:"center"

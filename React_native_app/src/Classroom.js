@@ -46,10 +46,6 @@ const ClasroomContext = createContext();                // this context will be 
 export {ClasroomContext};
 
 
-
-
-
-
 function Materials() {
   const { styles } = useStyle();
 
@@ -64,6 +60,7 @@ function Materials() {
       // add async  else it will navigate to login screen
       navigation.navigate("ClassroomsContainer", {
         auth_token: route.params.auth_token,
+        role : route.params.role
       });
     };
     const backHandler = BackHandler.addEventListener(

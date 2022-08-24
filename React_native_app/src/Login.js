@@ -49,10 +49,23 @@ const pallete = {
   forgot_model_close_btn: "#28800b",
 };
 
+// // Importing fonts.js
+
+// const fontsObject = require('./utils/fontsUtils');
+
+// import {useFonts} from 'expo-font';
+
+
 //USE KEYBOARD HEIGHT HOOK
 
 function useKeyboardHeight() {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  // const [loaded] = useFonts(fontsObject);
+
+  // if(!loaded){
+  //  return null; 
+  // }
 
   useEffect(() => {
     const showSubscription = Keyboard.addListener("keyboardDidShow", (e) =>
@@ -413,7 +426,7 @@ function Login({ navigation }) {
             <Text>Not registered? </Text>
             <TouchableWithoutFeedback onPress={onClickRegistration}>
               <Text
-                style={{ color: pallete.register_button, fontWeight: "bold" }}
+                style={{ color: pallete.register_button, fontWeight:"bold"}}
               >
                 Register Now
               </Text>
@@ -462,7 +475,7 @@ const useStyle = () => {
     },
     textStyle: {
       color: "white",
-      fontWeight: "bold",
+      fontFamily:'Semi_bold',
       textAlign: "center",
       fontSize: 15,
     },
