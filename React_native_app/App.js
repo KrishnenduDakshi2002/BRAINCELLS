@@ -14,6 +14,10 @@ import ClassroomsContainer from './src/ClassroomContainerScreen';
 import TestContainer from './src/TestContainerScreen';
 import Answersheets from './src/answerSheet';
 import UploadAnswerSheetScreen from './src/uploadAnswerSheet';
+import DashboardTest from './src/dashboardTest';
+import { BookScreen } from './src/Books';
+import { StationaryScreen } from './src/Stationary';
+import { GadgetScreen } from './src/Gadgets';
 // import video from './src/video';
 
 //Hello
@@ -26,7 +30,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{header: ()=> null}}>
 
-        <Stack.Screen name='Login' component={Login }/>
+        {/* <Stack.Screen name='Login' component={Login }/>
         <Stack.Screen name='Registration' component={Registration }/> 
         <Stack.Screen name='OTPScreen' component={OTPScreen }/>
         <Stack.Screen name='UserDashBoard' component={UserDashBoard}/>
@@ -34,7 +38,11 @@ export default function App() {
         <Stack.Screen name='ClassroomsContainer' component={ClassroomsContainer} />
         <Stack.Screen name='TestContainer' component={TestContainer} />
         <Stack.Screen name='AnswerSheets' component={Answersheets} />
-        <Stack.Screen name='UploadAnswerSheetScreen' component={UploadAnswerSheetScreen} />
+        <Stack.Screen name='UploadAnswerSheetScreen' component={UploadAnswerSheetScreen} /> */}
+        <Stack.Screen name='DashboardTest' component={DashboardTest }/>
+        <Stack.Screen name='Books' component={BookScreen }/>
+        <Stack.Screen name='Stationary' component={StationaryScreen }/>
+        <Stack.Screen name='Gadgets' component={GadgetScreen }/>
 
         {/* <Stack.Screen name='Video' component={video}/> */}
       
