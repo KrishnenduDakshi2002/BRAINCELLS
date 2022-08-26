@@ -1,0 +1,35 @@
+{
+    "translation": {
+        "EnterEmail": "Enter email / Phone No.",
+        "EnterPassword": "Enter your password",
+        "ForgotPassword": "Forgot Password?",
+        "Login":"Login",
+        "NotRegistered": "Not registered?",
+        "RegisterNow": "Register Now",
+
+        "CreateAccount": "Create Account",
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "PhoneNumber": "Phone Number",
+        "EmailAddress": "Email Address",
+        "DescribeYourself": "Describe Yourself",
+        "Address": "Address",
+        "InstituteName": "Institute Name",
+        "InstituteCode": "Institute Code",
+        "AtLeast6Characters": "AtLeast 6 Characters",
+        "Password": "Password",
+        "ConfirmPassword": "Confirm Password",
+        "ShowPassword": "Show Password",
+        "AlreadyRegistered": "Already Registered?",
+        "LoginNow": "Login Now",
+
+        "Teacher": "Teacher",
+        "Institute": "Institute",
+        "Student": "Student",
+        "ClassRoom": "ClassRoom",
+        "TestSchedule": "Test Schedule",
+        "ScheduledTests": "Scheduled Tests",
+        "QuestionPaper": "Question Paper",
+        "AnswerSheet": "Answer Sheet"
+    }
+}
