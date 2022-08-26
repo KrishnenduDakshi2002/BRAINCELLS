@@ -1,0 +1,34 @@
+{
+    "translation":{
+    "EnterEmail": "ইমেল/ফোন নম্বর লিখুন",
+    "EnterPassword":"আপনার পাসওয়ার্ড লিখুন",
+    "ForgotPassword":"পাসওয়ার্ড ভুলে গেছেন?",
+    "Login":"প্রবেশ করুন",
+    "NotRegistered":"নিবন্ধিত না?",
+    "RegisterNow":"এখন নিবন্ধন করুন",
+    
+    "CreateAccount":"আইডি তৈরি করুন",
+    "FirstName":"নামের প্রথম অংশ",
+    "LastName":"নামের শেষাংশ",
+    "PhoneNumber":"ফোন নম্বর",
+    "DescribeYourself":"তোমার সম্পকে বর্ণনা কর",
+    "Address":"ঠিকানা",
+    "InstitueCode":"ইনস্টিটিউট কোড",
+    "Atleast6Characters":"কমপক্ষে 6 অক্ষর",
+    "ConfirmPassword":"পাসওয়ার্ড নিশ্চিত করুন",
+    "ShowPassword":"পাসওয়ার্ড দেখাও",
+    "AlreadyRegistered":"ইতিমধ্যে নিবন্ধভুক্ত",
+    "LoginNow":"পাসওয়ার্ড দেখাও",
+    
+
+    "Teacher":"শিক্ষক",
+    "InstituteName":"প্রতিষ্ঠানের নাম",
+    "Student":"ছাত্র",
+    "ClassRoom":"শ্রেণীকক্ষ",
+    "TestSchedule":"পরীক্ষার সময়সূচী",
+    "ScheduledTest":"সময়সূচী পরীক্ষা",
+    "QuestionPaper":"প্রশ্নপত্র",
+    "AnswerSheets":"উত্তরপত্র"
+
+}
+}

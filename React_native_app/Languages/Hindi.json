@@ -1,0 +1,35 @@
+{
+    "translation": {
+        "EnterEmail": "कृपया ईमेल/फ़ोन नंबर दर्ज करें",
+        "EnterPassword": "अपना पासवर्ड दर्ज करें",
+        "ForgotPassword": "पासवर्ड भूल गए?",
+        "Login":"लॉग इन",
+        "NotRegistered": "पंजीकृत नहीं",
+        "RegisterNow": "अभी पंजीकरण करें",
+
+        "CreateAccount": "आईडी बनाएं",
+        "FirstName": "प्रथम नाम",
+        "LastName": "उपनाम",
+        "PhoneNumber": "फ़ोन नंबर",
+        "EmailAddress": "ईमेल आईडी",
+        "DescribeYourself": "स्वयं का विवरण दें",
+        "Address": "पता",
+        "InstituteName": "संस्थान का नाम",
+        "InstituteCode": "संस्थान कोड",
+        "AtLeast6Characters": "कम से कम 6 वर्ण",
+        "Password": "पासवर्ड",
+        "ConfirmPassword": "अपने पासवर्ड की पुष्टि करें",
+        "ShowPassword": "पासवर्ड दिखाए",
+        "AlreadyRegistered": "पहले से ही पंजीकृत",
+        "LoginNow": "अभी लॉगिन करें",
+
+        "Teacher": "शिक्षक",
+        "Institute": "संस्था",
+        "Student": "छात्र",
+        "ClassRoom": "कक्षा",
+        "TestSchedule": "परीक्षण",
+        "ScheduledTests": "अनुसूचित परीक्षण",
+        "QuestionPaper": "प्रश्न पत्र",
+        "AnswerSheet": "उत्तर पत्र"
+    }
+}

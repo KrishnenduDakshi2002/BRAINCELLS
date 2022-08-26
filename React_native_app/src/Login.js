@@ -1,39 +1,30 @@
-import React, { useState, useRef, useEffect } from "react";
-
-// NAVIGATION IMPORT
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 //NATIVE COMPONENTS IMPORT
-
 import {
-  Text,
-  View,
-  StyleSheet,
-  Pressable,
-  ImageBackground,
-  useWindowDimensions,
-  StatusBar,
-  Image,
-  Dimensions,
-  TextInput,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Animated,
-  Keyboard,
-  Alert,
-  Modal,
-  Button,
   ActivityIndicator,
-} from "react-native";
+  Alert,
+  Animated,
+  Dimensions,
+  Image,
+  ImageBackground,
+  Keyboard,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 
 // ICONS IMPORT
-
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  Entypo,
-  AntDesign,
-} from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 
 const pallete = {
   login_btn: "#28800b",
@@ -246,7 +237,7 @@ function Login({ navigation }) {
       } else if ("auth_token" in login_json_response) {
         // we will pass auth toke to next secreen and this passing of token will go on
         setActivityIndicatorVisibility((current) => !current);
-        Alert.alert("Logged in", "Let's move to your profile");
+        // Alert.alert("Logged in", "Let's move to your profile");
 
         navigation.navigate("UserDashBoard", {
           auth_token: login_json_response.auth_token
@@ -589,7 +580,7 @@ const useStyle = () => {
       // borderBottomWidth:1,
       // borderBottomColor:pallete.border_color,
       backgroundColor: pallete.text_input,
-      borderRadius: 50,
+      borderRadius: 10,
       padding: width / 50,
       justifyContent: "center",
       marginBottom: 10,
@@ -605,7 +596,7 @@ const useStyle = () => {
       // borderBottomWidth:1,
       // borderBottomColor:pallete.border_color,
       backgroundColor: pallete.text_input,
-      borderRadius: 50,
+      borderRadius: 10,
       width: width / 1.2,
       padding: width / 50,
       justifyContent: "center",
@@ -631,7 +622,7 @@ const useStyle = () => {
       alignItems: "center",
       width: width / 1.2,
       height: height / 18,
-      borderRadius: 100,
+      borderRadius: 10,
     },
     login_button_text: {
       fontSize: width / 25,

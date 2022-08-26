@@ -1,29 +1,37 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
-import { Text, View, StyleSheet, ScrollView, BackHandler } from "react-native";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+} from 'react';
 
-import ClassroomHeader from "../components/header";
-
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-
-import { useRoute, useNavigation } from "@react-navigation/native";
-
-// importing screens
-
-import Classes from "./ClassroomScreens/Classes";
-import Student from "./ClassroomScreens/Student";
-import Teacher from "./ClassroomScreens/Teacher";
-import Material from "./ClassroomScreens/Material";
-import Discussion from "./ClassroomScreens/Discussion";
-
+import {
+  BackHandler,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 // Icons
 import {
   Entypo,
+  FontAwesome,
   FontAwesome5,
   Octicons,
-  FontAwesome,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
+import {
+  createMaterialTopTabNavigator,
+} from '@react-navigation/material-top-tabs';
+import {
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
+import ClassroomHeader from '../components/header';
+// importing screens
+import Classes from './ClassroomScreens/Classes';
+import Discussion from './ClassroomScreens/Discussion';
+import Material from './ClassroomScreens/Material';
+import Student from './ClassroomScreens/Student';
+import Teacher from './ClassroomScreens/Teacher';
 
 //  Share data from single API call across material top tabs
 
@@ -46,7 +54,7 @@ const ClasroomContext = createContext();                // this context will be 
 export {ClasroomContext};
 
 
-function Materials() {
+function Classroom() {
   const { styles } = useStyle();
 
   const navigation = useNavigation();
@@ -285,7 +293,7 @@ const useStyle = () => {
 
   return { styles };
 };
-export default Materials;
+export default Classroom;
 
 
 
