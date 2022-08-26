@@ -4,7 +4,7 @@
         "EnterPassword": "अपना पासवर्ड दर्ज करें",
         "ForgotPassword": "पासवर्ड भूल गए?",
         "Login":"लॉग इन",
-        "NotRegistered": "पंजीकृत नहीं",
+        "NotRegistered": "पंजीकृत नहीं?",
         "RegisterNow": "अभी पंजीकरण करें",
 
         "CreateAccount": "आईडी बनाएं",
@@ -20,7 +20,7 @@
         "Password": "पासवर्ड",
         "ConfirmPassword": "अपने पासवर्ड की पुष्टि करें",
         "ShowPassword": "पासवर्ड दिखाए",
-        "AlreadyRegistered": "पहले से ही पंजीकृत",
+        "AlreadyRegistered": "पहले से ही पंजीकृत?",
         "LoginNow": "अभी लॉगिन करें",
 
         "Teacher": "शिक्षक",
