@@ -25,16 +25,27 @@ const ClassComponent = (props) => {
         <View style={styles.details}>
             <Text style={styles.topic}>{props.topic}</Text>
             <Text style={styles.teacher}>{props.teacher}</Text>
-            <Text style={styles.dateTime}>{moment(props.dateTime).calendar()}</Text>
+            <Text style={styles.dateTime}>{moment(props.dateTime).utc().format('MMMM Do YYYY, h:mm:ss a')}</Text>
         </View>
 
-        {/* <View style={styles.icon}>
+        {
+            (props.role === 'TEACHER') && (
+                <View style={styles.icon}>
             <TouchableWithoutFeedback onPress={props.onPressFunction}>
-                <Entypo name="dots-three-vertical" size={18} color="black" />
+                <Image
+                source ={require('../assets/file-upload.png')
+                }
+                style ={{width:30, height:30}}
+                />
             </TouchableWithoutFeedback>  
     
         
-        </View> */}
+                </View>
+            )
+        }
+
+        
+
         
     </View>
   );

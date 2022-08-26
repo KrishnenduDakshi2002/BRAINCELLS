@@ -20,6 +20,9 @@ import SearchScreen from './src/SearchScreen';
 import { StationaryScreen } from './src/Stationary';
 import TestContainer from './src/TestContainerScreen';
 import UploadAnswerSheetScreen from './src/uploadAnswerSheet';
+import VideoPlayer from './src/video';
+
+import BookScreen from './src/BookScreen';
 import UserDashBoard from './src/UserDashBoard';
 
 // import video from './src/video';
@@ -43,6 +46,7 @@ export default function App() {
         <Stack.Screen name='TestContainer' component={TestContainer} />
         <Stack.Screen name='AnswerSheets' component={Answersheets} />
         <Stack.Screen name='UploadAnswerSheetScreen' component={UploadAnswerSheetScreen} />
+        {/* <Stack.Screen name='BookScreen' component={BookScreen} /> */}
         <Stack.Screen name='DashboardTest' component={DashboardTest }/>
         <Stack.Screen name='Books' component={BookScreen }/>
         <Stack.Screen name='Stationary' component={StationaryScreen }/>
@@ -55,7 +59,7 @@ export default function App() {
         <Stack.Screen name='AddEvent' component={AddEventScreen}/>
         <Stack.Screen name='Profile' component={ProfileScreen}/>
 
-        {/* <Stack.Screen name='Video' component={video}/> */}
+        {/* <Stack.Screen name='VideoPlayer' component={VideoPlayer}/> */}
       
         {/* <Stack.Screen name='DatetimePicker' component={DatetimePicker }/> */}
 

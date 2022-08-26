@@ -129,7 +129,6 @@ function TodayClass() {
 
     console.log(DataArray);
     
-
   }
 
 // ************************************************************************************************************************************************
@@ -304,6 +303,7 @@ console.log(DataArray);
             subject = {class_obj.subject}
             teacher = {class_obj.teacher}
             dateTime = {class_obj.dateTime}
+            role = {context.role}
             />)
         }
         
