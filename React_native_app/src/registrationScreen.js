@@ -1,25 +1,24 @@
-import React, { Component,useState } from 'react';
-import { 
-    Keyboard, 
-    Platform, 
-    StyleSheet, 
-    Text, 
-    TextInput, 
-    View, 
-    TouchableOpacity,
-    useWindowDimensions, 
-    ImageBackground,
-    StatusBar,
-    TouchableWithoutFeedback,
-    Dimensions, 
-    Modal,
-    Pressable,
-    Alert} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, { useState } from 'react';
 
+import {
+  Alert,
+  Dimensions,
+  ImageBackground,
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-
-import { AntDesign ,Ionicons} from '@expo/vector-icons';
+import {
+  KeyboardAwareScrollView,
+} from 'react-native-keyboard-aware-scroll-view';
 
 //importing global styles
 
@@ -560,4 +559,4 @@ const useStyle = ()=>
 
 }
 
-export default RegistrationScreen
+export default RegistrationScreen;

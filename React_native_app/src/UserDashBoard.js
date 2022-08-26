@@ -1,30 +1,31 @@
-import React, { Component, useState,useEffect,createContext } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+} from 'react';
+
 import {
-    Image,
-  Keyboard,
+  Dimensions,
+  Image,
+  ImageBackground,
   Platform,
   StyleSheet,
   Text,
-  TextInput,
-  View,
   TouchableOpacity,
-  useWindowDimensions,
-  ImageBackground,
-  StatusBar,
-  TouchableWithoutFeedback,
-  Dimensions,
-  Modal,
-  Pressable,
-  Alert,
-} from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+  View,
+} from 'react-native';
+import {
+  KeyboardAwareScrollView,
+} from 'react-native-keyboard-aware-scroll-view';
 
-import { useRoute,useNavigation } from '@react-navigation/native';
-
-
-import { AntDesign, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-
-
+import {
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from '@expo/vector-icons';
+import {
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 // creating a new context using Context API
 
