@@ -333,7 +333,7 @@ const onPressDelete = async (classroom_id)=> {
       <Pressable style={{marginBottom: 40, position:'absolute', bottom: 30, right: 20, backgroundColor: '#81c784', paddingHorizontal: 15, paddingVertical: 18, borderRadius: 14}}>
         <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <Ionicons name='add' size={30} style={{marginRight: 6}} color='white'/>
-          <Text style={{color: 'white', fontSize: 20, marginRight: 6}}>Add new class</Text>
+          <Text style={{color: 'white', fontSize: 20, marginRight: 6}}>Add new classroom</Text>
         </View>
       </Pressable>
       )

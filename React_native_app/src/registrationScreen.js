@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   Alert,
@@ -19,6 +23,8 @@ import { Dropdown } from 'react-native-element-dropdown';
 import {
   KeyboardAwareScrollView,
 } from 'react-native-keyboard-aware-scroll-view';
+
+import { RootContext } from '../App';
 
 //importing global styles
 
@@ -41,6 +47,10 @@ let pallete = {
 
 function RegistrationScreen({navigation}) {
 
+  const rc = useContext(RootContext);
+  useEffect(() => {
+    console.log('rc', rc);
+  }, [rc]);
   // Navigate to login screen
   const onClickLogin = () => {
     navigation.navigate("Login");
@@ -261,7 +271,7 @@ return (
 
                     <View name="first name"style={styles.inputTextWrapper}>
                         <TextInput
-                            placeholder="First name"
+                            placeholder={rc.language.FirstName}
                             placeholderTextColor= {pallete.placeholderColor}
                             style={styles.textInput}
                             returnKeyType="next"
@@ -272,7 +282,7 @@ return (
 
                     <View name="Last name" style={styles.inputTextWrapper}>
                         <TextInput
-                            placeholder='Last name'
+                            placeholder={rc.language.LastName}
                             placeholderTextColor={pallete.placeholderColor}
                             style={styles.textInput}
                             returnKeyType="next"

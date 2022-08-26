@@ -1,4 +1,5 @@
 import React, {
+  useContext,
   useEffect,
   useState,
 } from 'react';
@@ -8,6 +9,7 @@ import {
   ActivityIndicator,
   Alert,
   Animated,
+  AsyncStorage,
   Dimensions,
   Image,
   ImageBackground,
@@ -15,6 +17,7 @@ import {
   Modal,
   Pressable,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   TouchableOpacity,
@@ -25,6 +28,10 @@ import {
 
 // ICONS IMPORT
 import { Ionicons } from '@expo/vector-icons';
+
+import { RootContext } from '../App';
+import * as English from '../Languages/English.json';
+import * as Hindi from '../Languages/Hindi.json';
 
 const pallete = {
   login_btn: "#28800b",
@@ -162,7 +169,9 @@ function Login({ navigation }) {
     input: "",
     password: "",
   });
+  const [hindiSelected, setHindiSelected] = useState(false);
 
+  const rc = useContext(RootContext);
   // FUNCTIONALITY FUNCTIONS
 
   // forgot password button function
@@ -274,7 +283,7 @@ function Login({ navigation }) {
             <TextInput
               onChangeText={(emailInput) => setResetEmailAddress(emailInput)}
               visible={true}
-              placeholder="Enter email address"
+              placeholder={rc.language.EnterEmail}
               autoCorrect={false}
               autoCapitalize="none"
               placeholderTextColor={"lightgrey"}
@@ -351,7 +360,7 @@ function Login({ navigation }) {
                 onChangeText={(inpData) => {
                   setData({ ...Data, input: inpData });
                 }}
-                placeholder={validate ? "Enter email / Phone No. " : "required"}
+                placeholder={validate ? rc.language.EnterEmail : "required"}
                 placeholderTextColor={
                   validate ? pallete.placeholder_color : "red"
                 }
@@ -371,7 +380,7 @@ function Login({ navigation }) {
                 onChangeText={(password) =>
                   setData({ ...Data, password: password })
                 }
-                placeholder={validate ? "Enter your password " : "required"}
+                placeholder={validate ? rc.language.EnterPassword : "required"}
                 placeholderTextColor={
                   validate ? pallete.placeholder_color : "red"
                 }
@@ -398,7 +407,7 @@ function Login({ navigation }) {
               <Text
                 style={{ color: pallete.forgot_button, fontWeight: "bold" }}
               >
-                Forgot Password?
+                {rc.language.ForgotPassword}
               </Text>
             </TouchableWithoutFeedback>
           </View>
@@ -410,20 +419,35 @@ function Login({ navigation }) {
           style={[styles.login_signup_btn_container]}
         >
           <TouchableOpacity style={styles.login_btn} onPress={submitLoginInfo}>
-            <Text style={styles.login_button_text}>Login</Text>
+            <Text style={styles.login_button_text}>{rc.language.Login}</Text>
           </TouchableOpacity>
 
           <View style={styles.register_button}>
-            <Text>Not registered? </Text>
+            <Text>{rc.language.NotRegistered}</Text>
             <TouchableWithoutFeedback onPress={onClickRegistration}>
               <Text
                 style={{ color: pallete.register_button, fontWeight:"bold"}}
               >
-                Register Now
+                {rc.language.RegisterNow}
               </Text>
             </TouchableWithoutFeedback>
           </View>
         </View>
+        <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+          <Text style={{marginHorizontal: 10}}>view in Hindi</Text>
+                  <Switch value={hindiSelected} onChange={() => {
+                    console.log('res');
+                    setHindiSelected(!hindiSelected);
+                    AsyncStorage.setItem('languageCode', !hindiSelected? 'en': 'hn');
+                    if (!hindiSelected)
+                    {
+                      rc.setLanguage(Hindi.default.translation);
+                    }
+                    else
+                    {rc.setLanguage(English.default.translation);}
+                    console.log('language', rc.language);
+                  }}/>
+                </View>
       </Animated.View>
     </ImageBackground>
   );

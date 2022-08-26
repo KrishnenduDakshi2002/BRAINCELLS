@@ -1,6 +1,13 @@
+import {
+  createContext,
+  useEffect,
+  useState,
+} from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import * as English from './Languages/English.json';
 import AddEventScreen from './src/AddEvent';
 import AllCategoriesScreen from './src/AllCategoriesScreen';
 import Answersheets from './src/answerSheet';
@@ -27,10 +34,18 @@ import UserDashBoard from './src/UserDashBoard';
 //Hello
 const Stack = createNativeStackNavigator();
 
-
+const RootContext = createContext();  
+export {RootContext};
 export default function App() {
-
+  useEffect(() => {
+    setLanguage(English.default.translation);
+  },[]);
+  const [language, setLanguage] = useState(English.default.translation);
   return (
+    <RootContext.Provider value={{
+      language,
+      setLanguage
+    }}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{header: ()=> null}}>
 
@@ -61,5 +76,7 @@ export default function App() {
 
       </Stack.Navigator>
     </NavigationContainer>
+
+    </RootContext.Provider>
   );
 }

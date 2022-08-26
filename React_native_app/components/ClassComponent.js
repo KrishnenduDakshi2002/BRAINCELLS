@@ -1,18 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { Text,
-    View,
-    StyleSheet, 
-    useWindowDimensions ,
-    Pressable,
-    TouchableWithoutFeedback,
-    Image
-
-} from "react-native";
-
-import moment  from "moment";
-
-import { Entypo } from '@expo/vector-icons';
+import moment from 'moment';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 
 const ClassComponent = (props) => {
     const {styles}= useStyle();
@@ -23,8 +18,11 @@ const ClassComponent = (props) => {
 
         </View>
         <View style={styles.details}>
+            <View >
+
+            </View>
             <Text style={styles.topic}>{props.topic}</Text>
-            <Text style={styles.teacher}>{props.teacher}</Text>
+            <Text style={styles.teacher}>by {props.teacher}</Text>
             <Text style={styles.dateTime}>{moment(props.dateTime).calendar()}</Text>
         </View>
 
@@ -47,12 +45,11 @@ const useStyle = ()=>{
     const styles = StyleSheet.create({
         container:{
             flexDirection:'row',
-            backgroundColor: "#04cc75",
+            backgroundColor: "#04cc7533",
             width : '100%',
-            height : width/2.3,
             padding: 15,
-            borderRadius: 25,
-            marginBottom: 15,
+            borderRadius: 8,
+            marginBottom: 10,
             alignItems:'center'
         },
         icon:{
@@ -81,9 +78,9 @@ const useStyle = ()=>{
         topic:{
             marginTop:10,
             width:'100%',
-            fontSize: height/45,
+            fontSize: 18,
             fontWeight :"bold",
-            marginBottom : height/50
+            marginBottom : 2
         },
         subject:{
             
@@ -92,10 +89,10 @@ const useStyle = ()=>{
             marginBottom : height/70,
         },
         teacher:{
-            
+            color:'gray',
             width:'100%',
-            fontSize: height/50,
-            marginBottom : height/70,
+            fontSize: 14,
+            marginBottom : 20,
         },
         dateTime:{
             
