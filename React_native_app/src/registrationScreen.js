@@ -1,25 +1,30 @@
-import React, { Component,useState } from 'react';
-import { 
-    Keyboard, 
-    Platform, 
-    StyleSheet, 
-    Text, 
-    TextInput, 
-    View, 
-    TouchableOpacity,
-    useWindowDimensions, 
-    ImageBackground,
-    StatusBar,
-    TouchableWithoutFeedback,
-    Dimensions, 
-    Modal,
-    Pressable,
-    Alert} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
+import {
+  Alert,
+  Dimensions,
+  ImageBackground,
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import {
+  KeyboardAwareScrollView,
+} from 'react-native-keyboard-aware-scroll-view';
 
-import { AntDesign ,Ionicons} from '@expo/vector-icons';
+import { RootContext } from '../App';
 
 //importing global styles
 
@@ -42,6 +47,10 @@ let pallete = {
 
 function RegistrationScreen({navigation}) {
 
+  const rc = useContext(RootContext);
+  useEffect(() => {
+    console.log('rc', rc);
+  }, [rc]);
   // Navigate to login screen
   const onClickLogin = () => {
     navigation.navigate("Login");
@@ -262,7 +271,7 @@ return (
 
                     <View name="first name"style={styles.inputTextWrapper}>
                         <TextInput
-                            placeholder="First name"
+                            placeholder={rc.language.FirstName}
                             placeholderTextColor= {pallete.placeholderColor}
                             style={styles.textInput}
                             returnKeyType="next"
@@ -273,7 +282,7 @@ return (
 
                     <View name="Last name" style={styles.inputTextWrapper}>
                         <TextInput
-                            placeholder='Last name'
+                            placeholder={rc.language.LastName}
                             placeholderTextColor={pallete.placeholderColor}
                             style={styles.textInput}
                             returnKeyType="next"
@@ -560,4 +569,4 @@ const useStyle = ()=>
 
 }
 
-export default RegistrationScreen
+export default RegistrationScreen;

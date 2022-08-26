@@ -1,19 +1,31 @@
-import React ,{useState,useEffect,useContext}from 'react'
-import { Text, View , StyleSheet, ScrollView,Pressable, RefreshControl,Modal,TextInput,TouchableOpacity,Image,useWindowDimensions,Alert} from 'react-native'
+import React, {
+  useContext,
+  useState,
+} from 'react';
+
+import moment from 'moment';
+import {
+  Alert,
+  Image,
+  Modal,
+  Pressable,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 //importing classc component
 import ClassComponent from '../../components/ClassComponent';
-
-import { AntDesign} from '@expo/vector-icons';
-
-import DateTimePicker from '@react-native-community/datetimepicker';
-
-import moment  from 'moment';
-
-
 // importing the classroom context from classroom.js
 import { ClasroomContext } from '../Classroom';
-
 
 let pallete = {
 
@@ -311,15 +323,20 @@ console.log(DataArray);
 
     {
       (context.role === 'TEACHER') &&(
-        <Pressable style={styles.floating_button} onPress={()=> {
+      <Pressable
+       onPress={()=> {
           setText(initial_text);
           setShowModal((current) => !current);
           setIsCreated(false);
   
         }
-          }>
-        <AntDesign name="pluscircle" size={55} color="black" />
-      </Pressable>
+          }
+       style={{marginBottom: 40, position:'absolute', bottom: 30, right: 20, backgroundColor: '#81c784', paddingHorizontal: 15, paddingVertical: 18, borderRadius: 14}}>
+      <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+        <Ionicons name='add' size={30} style={{marginRight: 6}} color='white'/>
+        <Text style={{color: 'white', fontSize: 20, marginRight: 6}}>Add new class</Text>
+      </View>
+    </Pressable>
       )
 
     }
@@ -338,8 +355,8 @@ const useStyle = ()=>{
 
     const styles = StyleSheet.create({
       container:{
-        padding: 25,
-        paddingRight : 25
+        padding: 15,
+        paddingRight : 15
       },
       floating_button:{
         position:"absolute",

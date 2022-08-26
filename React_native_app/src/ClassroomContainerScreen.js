@@ -1,31 +1,33 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import * as Clipboard from 'expo-clipboard';
 import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
+  Alert,
+  BackHandler,
+  Image,
+  Modal,
   Pressable,
   RefreshControl,
-  BackHandler,
-  Modal,
-  useWindowDimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
   TextInput,
-  Image,
-  Alert,
-  TouchableOpacity
-} from "react-native";
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
+import {
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 //importing classc component
-import ClassroomComponent from "../components/ClassroomComponent";
-
-import { AntDesign } from "@expo/vector-icons";
-
-import { useRoute, useNavigation } from "@react-navigation/native";
-
-import * as Clipboard from "expo-clipboard";
-import Student from "./ClassroomScreens/Student";
-
-
+import ClassroomComponent from '../components/ClassroomComponent';
 
 let pallete = {
   upload_model_bgc: "#FF9933",
@@ -271,7 +273,7 @@ const onPressDelete = async (classroom_id)=> {
          <Image source={require('../assets/lecture.png')} style={styles.icon_image}/>
         </View>  
 
-        <Text style={styles.header_text}>CLASSROOMS</Text>
+        <Text style={styles.header_text}>My Classrooms</Text>
 
 
       </View>
@@ -318,15 +320,21 @@ const onPressDelete = async (classroom_id)=> {
 
       {
       (route.params.role == 'TEACHER') &&(
-        <Pressable
-        style={styles.floating_button}
-        onPress={() => {
-          setShowModal((current) => !current);
-          setIsCreated(false);
-          setClassroomForm(initial_ClassroomForm);
-        }}
-      >
-        <AntDesign name="pluscircle" size={55} color="black" />
+      //   <Pressable
+      //   style={styles.floating_button}
+      //   onPress={() => {
+      //     setShowModal((current) => !current);
+      //     setIsCreated(false);
+      //     setClassroomForm(initial_ClassroomForm);
+      //   }}
+      // >
+      //   <Ionicons color={'white'} size={50} name='add'/>
+      // </Pressable>
+      <Pressable style={{marginBottom: 40, position:'absolute', bottom: 30, right: 20, backgroundColor: '#81c784', paddingHorizontal: 15, paddingVertical: 18, borderRadius: 14}}>
+        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+          <Ionicons name='add' size={30} style={{marginRight: 6}} color='white'/>
+          <Text style={{color: 'white', fontSize: 20, marginRight: 6}}>Add new classroom</Text>
+        </View>
       </Pressable>
       )
 
@@ -344,11 +352,10 @@ const useStyle = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#f75200",
+      backgroundColor: "#f7520044",
     },
     header: {
       flex: 0.5,
-      backgroundColor: "#f75200",
       height: 100,
       justifyContent: "flex-end",
       alignItems: "center",
@@ -370,25 +377,29 @@ const useStyle = () => {
     },
 
     header_text: {
-      fontWeight: "bold",
-      fontSize: width / 20,
+      // fontWeight: "bold",
+      fontSize: 30,
     },
     scrollContainer: {
       flex: 1,
       // padding: 25,
-      paddingRight: 25,
-      paddingLeft: 25,
-      paddingTop: 15,
-      borderTopLeftRadius: 50,
-      borderTopRightRadius: 50,
+      paddingRight: 10,
+      paddingLeft: 10,
+      paddingTop: 10,
       backgroundColor: pallete.backgroundColor,
     },
     floating_button: {
       position: "absolute",
-      bottom: 80,
-      right: 50,
-      backgroundColor: "white",
+      bottom: 40,
+      right: 20,
+      backgroundColor: 'green',
+      height: 60,
+      width: 60,
       borderRadius: 50,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent:'center',
+      alignItems:'center'
     },
 
     // MODAL

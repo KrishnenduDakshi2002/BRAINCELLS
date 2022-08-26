@@ -1,39 +1,37 @@
-import React, { useState, useRef, useEffect } from "react";
-
-// NAVIGATION IMPORT
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 //NATIVE COMPONENTS IMPORT
-
 import {
-  Text,
-  View,
-  StyleSheet,
-  Pressable,
-  ImageBackground,
-  useWindowDimensions,
-  StatusBar,
-  Image,
-  Dimensions,
-  TextInput,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Animated,
-  Keyboard,
-  Alert,
-  Modal,
-  Button,
   ActivityIndicator,
-} from "react-native";
+  Alert,
+  Animated,
+  AsyncStorage,
+  Dimensions,
+  Image,
+  ImageBackground,
+  Keyboard,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 
 // ICONS IMPORT
+import { Ionicons } from '@expo/vector-icons';
 
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  Entypo,
-  AntDesign,
-} from "@expo/vector-icons";
+import { RootContext } from '../App';
+import * as English from '../Languages/English.json';
+import * as Hindi from '../Languages/Hindi.json';
 
 const pallete = {
   login_btn: "#28800b",
@@ -171,7 +169,9 @@ function Login({ navigation }) {
     input: "",
     password: "",
   });
+  const [hindiSelected, setHindiSelected] = useState(false);
 
+  const rc = useContext(RootContext);
   // FUNCTIONALITY FUNCTIONS
 
   // forgot password button function
@@ -246,7 +246,7 @@ function Login({ navigation }) {
       } else if ("auth_token" in login_json_response) {
         // we will pass auth toke to next secreen and this passing of token will go on
         setActivityIndicatorVisibility((current) => !current);
-        Alert.alert("Logged in", "Let's move to your profile");
+        // Alert.alert("Logged in", "Let's move to your profile");
 
         navigation.navigate("UserDashBoard", {
           auth_token: login_json_response.auth_token
@@ -283,7 +283,7 @@ function Login({ navigation }) {
             <TextInput
               onChangeText={(emailInput) => setResetEmailAddress(emailInput)}
               visible={true}
-              placeholder="Enter email address"
+              placeholder={rc.language.EnterEmail}
               autoCorrect={false}
               autoCapitalize="none"
               placeholderTextColor={"lightgrey"}
@@ -360,7 +360,7 @@ function Login({ navigation }) {
                 onChangeText={(inpData) => {
                   setData({ ...Data, input: inpData });
                 }}
-                placeholder={validate ? "Enter email / Phone No. " : "required"}
+                placeholder={validate ? rc.language.EnterEmail : "required"}
                 placeholderTextColor={
                   validate ? pallete.placeholder_color : "red"
                 }
@@ -380,7 +380,7 @@ function Login({ navigation }) {
                 onChangeText={(password) =>
                   setData({ ...Data, password: password })
                 }
-                placeholder={validate ? "Enter your password " : "required"}
+                placeholder={validate ? rc.language.EnterPassword : "required"}
                 placeholderTextColor={
                   validate ? pallete.placeholder_color : "red"
                 }
@@ -407,7 +407,7 @@ function Login({ navigation }) {
               <Text
                 style={{ color: pallete.forgot_button, fontWeight: "bold" }}
               >
-                Forgot Password?
+                {rc.language.ForgotPassword}
               </Text>
             </TouchableWithoutFeedback>
           </View>
@@ -419,20 +419,35 @@ function Login({ navigation }) {
           style={[styles.login_signup_btn_container]}
         >
           <TouchableOpacity style={styles.login_btn} onPress={submitLoginInfo}>
-            <Text style={styles.login_button_text}>Login</Text>
+            <Text style={styles.login_button_text}>{rc.language.Login}</Text>
           </TouchableOpacity>
 
           <View style={styles.register_button}>
-            <Text>Not registered? </Text>
+            <Text>{rc.language.NotRegistered}</Text>
             <TouchableWithoutFeedback onPress={onClickRegistration}>
               <Text
                 style={{ color: pallete.register_button, fontWeight:"bold"}}
               >
-                Register Now
+                {rc.language.RegisterNow}
               </Text>
             </TouchableWithoutFeedback>
           </View>
         </View>
+        <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+          <Text style={{marginHorizontal: 10}}>view in Hindi</Text>
+                  <Switch value={hindiSelected} onChange={() => {
+                    console.log('res');
+                    setHindiSelected(!hindiSelected);
+                    AsyncStorage.setItem('languageCode', !hindiSelected? 'en': 'hn');
+                    if (!hindiSelected)
+                    {
+                      rc.setLanguage(Hindi.default.translation);
+                    }
+                    else
+                    {rc.setLanguage(English.default.translation);}
+                    console.log('language', rc.language);
+                  }}/>
+                </View>
       </Animated.View>
     </ImageBackground>
   );
@@ -589,7 +604,7 @@ const useStyle = () => {
       // borderBottomWidth:1,
       // borderBottomColor:pallete.border_color,
       backgroundColor: pallete.text_input,
-      borderRadius: 50,
+      borderRadius: 10,
       padding: width / 50,
       justifyContent: "center",
       marginBottom: 10,
@@ -605,7 +620,7 @@ const useStyle = () => {
       // borderBottomWidth:1,
       // borderBottomColor:pallete.border_color,
       backgroundColor: pallete.text_input,
-      borderRadius: 50,
+      borderRadius: 10,
       width: width / 1.2,
       padding: width / 50,
       justifyContent: "center",
@@ -631,7 +646,7 @@ const useStyle = () => {
       alignItems: "center",
       width: width / 1.2,
       height: height / 18,
-      borderRadius: 100,
+      borderRadius: 10,
     },
     login_button_text: {
       fontSize: width / 25,
