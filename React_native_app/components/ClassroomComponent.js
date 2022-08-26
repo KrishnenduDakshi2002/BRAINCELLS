@@ -1,35 +1,28 @@
-import React ,{useState}from "react";
+import React from 'react';
 
-import { Text,
-    View,
-    StyleSheet, 
-    useWindowDimensions ,
-    Pressable,
-    TouchableWithoutFeedback,
-    ImageBackground,
-    Image
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 
-} from "react-native";
-
-
-import { Entypo } from '@expo/vector-icons';
-
-
-
-
+import { Ionicons } from '@expo/vector-icons';
 
 const ClassroomComponent = (props) => {
     const {styles}= useStyle();
 
+    console.log('hello', props.route, props.role);
   return (
     <Pressable onPress={props.onPressClassroom}>
     <View style={[styles.container,{...props.style}]}>
-        <View style={styles.imageContainer}>
+        {/* <View style={styles.imageContainer}>
             <Pressable onPress={props.clickTocopyClickBoard}>
             <Image source={require('../assets/Classroom.png')} style={{height:50,width:50}}/>
 
             </Pressable>
-        </View>
+        </View> */}
         <View style={styles.details}>
             <Text style={styles.topic}>{props.title}</Text>
             <Text style={styles.subject}>{props.subject}</Text>
@@ -37,7 +30,8 @@ const ClassroomComponent = (props) => {
         <View style={styles.icon}>
         {props.role === "TEACHER" && (
             <Pressable onPress={props.onPressDelete}>
-                <Image source={require('../assets/dustbin.png')} style={{width:30,height:30,marginRight:10}}/>
+                {/* <Image source={require('../assets/dustbin.png')} style={{width:30,height:30,marginRight:10}}/> */}
+                <Ionicons name='trash-outline' color='red' size={18}/>
             </Pressable>
         )}
         </View>
@@ -55,10 +49,10 @@ const useStyle = ()=>{
         container:{
             flexDirection:'row',
             width : '100%',
-            height : width/3.5,
-            borderRadius: 25,
-            marginBottom: 15,
-            backgroundColor:"#04cc75"
+            borderRadius: 6,
+            marginBottom: 10,
+            paddingVertical: 4,
+            backgroundColor:"#04cc7522"
         },
         imageContainer:
         {
@@ -86,17 +80,15 @@ const useStyle = ()=>{
         topic:{
             marginTop:10,
             width:'100%',
-            fontSize: height/45,
-            fontWeight :"bold",
-            marginBottom : 5,
+            fontSize: 18,
+            marginBottom : 10,
             color:"black"
         },
         subject:{
-            
             width:'100%',
-            fontSize: height/50,
+            fontSize: 14,
             marginBottom : height/70,
-            color:"#242121"
+            color:"#6e6e6e"
         },
         teacher:{
             

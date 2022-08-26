@@ -1,30 +1,27 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
+
 import {
-  Keyboard,
+  Dimensions,
+  Image,
+  ImageBackground,
   Platform,
+  Pressable,
+  ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
-  TextInput,
-  View,
   TouchableOpacity,
   useWindowDimensions,
-  ImageBackground,
-  StatusBar,
-  TouchableWithoutFeedback,
-  Dimensions,
-  Modal,
-  Pressable,
-  Alert,
-  Height,
-  Width,
-  FlatList,
-  Image,
-  ScrollView,
+  View,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+  KeyboardAwareScrollView,
+} from 'react-native-keyboard-aware-scroll-view';
 
-import { AntDesign, Ionicons, FontAwesome, FontAwesome5, MaterialIcons, MaterialCommunityIcons, Fontisto, Feather } from '@expo/vector-icons';
-
+import {
+  FontAwesome,
+  SimpleLineIcons,
+} from '@expo/vector-icons';
 
 const Images = [
   'https://kettocdn.gumlet.io/media/campaign/204000/204410/image/5eda52567eb83.png?w=768&dpr=1.3',
@@ -32,6 +29,24 @@ const Images = [
   'http://www.lotuspetalfoundation.org/wp-content/uploads/2022/05/thumb-donate-a-tablet.jpg'
 ];
 
+const topContributors = [{
+  name: 'Soumyadip Mondal',
+  contributions: 3,
+  points: 250,
+  badges: 2
+},
+{
+  name: 'Krishnendu Dakshi',
+  contributions: 2,
+  points: 200,
+  badges: 1
+},
+{
+  name: 'Shrabanti Mazumdar',
+  contributions: 1,
+  points: 150,
+  badges: 0
+}];
 console.log('statusBarHeight: ', StatusBar.currentHeight);
 
 const WIDTH = Dimensions.get('window').width;
@@ -80,7 +95,7 @@ export default function DashboardTest({navigation}) {
   };
 
   const onClickOthers = () => {
-    navigation.navigate('Others');
+    navigation.navigate('AllCategories');
   };
 
   const onClickProfile = () => {
@@ -148,7 +163,7 @@ export default function DashboardTest({navigation}) {
 
         <View style={styles.categoriesContainer}>
 
-        <View style={styles.categoriesList1}> 
+        {/* <View style={styles.categoriesList1}> 
 
         <TouchableOpacity style={styles.btnContainer} onPress={onClickBooks}>
         <View style={styles.category}>
@@ -186,9 +201,9 @@ export default function DashboardTest({navigation}) {
         </View>
         </TouchableOpacity>
 
-        </View>
+        </View> */}
 
-        <View style={styles.categoriesList2}> 
+        {/* <View style={styles.categoriesList2}> 
 
         <TouchableOpacity style={styles.btnContainer} onPress={onClickClassRoom}>
         <View style={styles.category}>
@@ -227,10 +242,43 @@ export default function DashboardTest({navigation}) {
         </View>
         </TouchableOpacity>
 
-        </View>
+        </View> */}
 
         </View>
 
+        <View>
+          <Text style={{fontSize: 18, marginHorizontal: 10}}>Top contributors of the month</Text>
+          {topContributors.map((con, index) => <Pressable onPress={() => {
+            navigation.navigate('Profile', con);
+          }} key={index}>
+            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+            <View style={{ height:35, width: 35, borderRadius: 20, backgroundColor: 'gray', justifyContent: 'center', alignItems: 'center', marginLeft: 10, marginVertical: 10}}>
+            <Text style={{color: 'white'}}>{index+1}</Text>
+              </View>
+              <View  style={{marginLeft: 10}}>
+              <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+            <Text style={{fontSize: 16}}>{con.name}</Text>
+            {Boolean(con.badges) && <SimpleLineIcons style={{marginHorizontal: 5}} name='badge'/>}
+            </View>
+            <Text style={{color:'gray'}}>{con.contributions} contributions worth {con.points} points</Text>
+            </View>
+            </View>
+          </Pressable>)}
+        </View>
+        <View style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between', alignItems: 'center'}}>
+          <Pressable onPress={() => {
+            navigation.navigate('AllCategories');
+            console.log('helo');
+          }} style={{ height: 70, backgroundColor: '#28800b', borderRadius: 4, padding: 8, margin: 8, flex: 1}}>
+            <Text style={{textAlign: 'center', fontSize: 20, color:'white'}}>Find/donate supplies</Text>
+          </Pressable>
+
+          <Pressable onPress={() => {
+            navigation.navigate('Event');
+          }} style={{ height: 70, backgroundColor: 'gray', borderRadius: 4, padding: 8, margin: 8, flex: 1}}>
+            <Text style={{textAlign: 'center', fontSize: 20, color: 'white'}}>Locate Events</Text>
+          </Pressable>
+        </View>
         <View style={styles.recentlyAdded}>
         <View style={styles.recentText}>
         <View>
@@ -242,13 +290,8 @@ export default function DashboardTest({navigation}) {
           </View>
         </View>
         </View>
-
         <View style={styles.recentAdd}>
-
     </View>
-        
-
-        
       </KeyboardAwareScrollView>
     </ImageBackground>
   );
