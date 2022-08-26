@@ -336,10 +336,10 @@ function Material() {
           <TextInput style={styles.text_input}/>
           <FontAwesome name="search" size={24} color="black" />
         </View>
-        <View style={styles.filter_btn}>
+        {/* <View style={styles.filter_btn}>
           <Ionicons name="filter" size={24} color="black" />
 
-        </View>
+        </View> */}
       </View>
       <ScrollView
       contentContainerStyle={styles.container}

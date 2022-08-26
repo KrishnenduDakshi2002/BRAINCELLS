@@ -111,8 +111,8 @@ if(dashboard_res.User){
           <View style={styles.header}>
           {/* <Image style={styles.headerimg} source={{uri: 'https://img.freepik.com/free-vector/education-horizontal-typography-banner-set-with-learning-knowledge-symbols-flat-illustration_1284-29493.jpg?w=1380&t=st=1660630467~exp=1660631067~hmac=f124e774ad58e89e82354d29cfe0ab5f25b8310bb88f72ad6273271508074560'}}/> */}
           </View>
-          {/* <Image style={styles.avatar} source={require('../assets/user.png')}/> */}
-          <Image style={styles.avatar} source={{uri: 'https://img.freepik.com/premium-vector/laughing-boy-avatar-funny-kid-profile-picture_176411-3537.jpg?w=740'}}/>
+          <Image style={styles.avatar} source={require('../assets/user.png')}/>
+          {/* <Image style={styles.avatar} source={{uri: 'https://img.freepik.com/premium-vector/laughing-boy-avatar-funny-kid-profile-picture_176411-3537.jpg?w=740'}}/> */}
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               

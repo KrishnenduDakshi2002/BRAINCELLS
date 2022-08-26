@@ -4,7 +4,7 @@ import { View,StyleSheet, Text } from 'react-native'
 import {Video} from 'expo-av';
 
 
-function video() {
+function VideoPlayer() {
     const {styles} = useStyle();
   return (
     <View style={styles.container}>
@@ -13,8 +13,10 @@ function video() {
     <Video
 	   source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
 	   shouldPlay
-	   resizeMode="cover"
-	   style={{ width, height: 300 }}
+	   resizeMode="contain"
+       useNativeControls
+       isLooping
+	   style={{ width:300, height: 300 }}
 	  />
     </View>
   )
@@ -34,4 +36,4 @@ const useStyle = ()=>{
     return {styles};
 }
 
-export default video
+export default VideoPlayer

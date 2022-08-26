@@ -14,7 +14,9 @@ import ClassroomsContainer from './src/ClassroomContainerScreen';
 import TestContainer from './src/TestContainerScreen';
 import Answersheets from './src/answerSheet';
 import UploadAnswerSheetScreen from './src/uploadAnswerSheet';
-// import video from './src/video';
+import VideoPlayer from './src/video';
+
+import BookScreen from './src/BookScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -35,8 +37,9 @@ export default function App() {
         <Stack.Screen name='TestContainer' component={TestContainer} />
         <Stack.Screen name='AnswerSheets' component={Answersheets} />
         <Stack.Screen name='UploadAnswerSheetScreen' component={UploadAnswerSheetScreen} />
+        {/* <Stack.Screen name='BookScreen' component={BookScreen} /> */}
 
-        {/* <Stack.Screen name='Video' component={video}/> */}
+        {/* <Stack.Screen name='VideoPlayer' component={VideoPlayer}/> */}
       
         {/* <Stack.Screen name='DatetimePicker' component={DatetimePicker }/> */}
 
