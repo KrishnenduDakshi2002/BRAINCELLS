@@ -131,6 +131,12 @@ Now it's her decision what she wants to do, see can remove Ankesh's code or keep
 you can type `git config --global pull.ff true `
 then you can pull 
 
+getting this error after the first step `fatal: refusing to merge unrelated histories`
+
+`git pull <remote> <branchName> --allow-unrelated-histories`
+
+[Issue StackOverflow link](https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase)
+
 For more details follow[issue link](https://github.com/desktop/desktop/issues/14431#issuecomment-1106634672)
 
 -------------------------------------------------------------------------------------------------
