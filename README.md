@@ -127,8 +127,12 @@ Now it's her decision what she wants to do, see can remove Ankesh's code or keep
 ## Warning and errors while pulling
 
 .DS_Store sometime creates problem, while pulling and display 'unstaged changes'
+
 1.`git rm --cached .DS_Store` [if .gitignore wasn't created initially]
+
 2.then create `.gitignore` and add `.DS_Store` 
+
+[Issue link Stackoverflow](https://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder)
 
 ![Warning](https://user-images.githubusercontent.com/44277044/164540951-cadef7be-5b07-4ad8-9bba-10b817663599.PNG)
 
