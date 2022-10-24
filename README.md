@@ -6,7 +6,7 @@ Codebase for react native app, Website and Backend
 2. [Cloning repo](#cloning-repo-to-you-local)
 3. [Pushing to remote repo](#pushing-to-this-repo)
 4. [Pull changes](#pull-changes)
-5. [Warning or error while pulling](#pull-changes)
+5. [Warning or error while pulling](#warning-and-errors-while-pulling)
 6. [Removing conflicts](#removing-conflicts)
 
 
