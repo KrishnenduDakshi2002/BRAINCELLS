@@ -37,7 +37,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{header: ()=> null}}>
 
-        <Stack.Screen name='Login' component={LoginScreen}/>
+        {/* <Stack.Screen name='Login' component={LoginScreen}/>
         <Stack.Screen name='Registration' component={RegistrationScreen}/> 
         <Stack.Screen name='OTPScreen' component={OTPScreen}/>
         <Stack.Screen name='UserDashBoard' component={UserDashBoard}/>
@@ -45,8 +45,10 @@ export default function App() {
         <Stack.Screen name='ClassroomsContainer' component={ClassroomsContainer} />
         <Stack.Screen name='TestContainer' component={TestContainer} />
         <Stack.Screen name='AnswerSheets' component={Answersheets} />
-        <Stack.Screen name='UploadAnswerSheetScreen' component={UploadAnswerSheetScreen} />
+        <Stack.Screen name='UploadAnswerSheetScreen' component={UploadAnswerSheetScreen} /> */}
         {/* <Stack.Screen name='BookScreen' component={BookScreen} /> */}
+
+        
         <Stack.Screen name='DashboardTest' component={DashboardTest }/>
         <Stack.Screen name='Books' component={BookScreen }/>
         <Stack.Screen name='Stationary' component={StationaryScreen }/>
